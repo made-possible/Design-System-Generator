@@ -1,0 +1,3270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAI Design System — microsoft.ai</title>
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+<style>
+  /* ============================================================
+     DESIGN TOKENS — LIGHT MODE
+     ============================================================ */
+  :root {
+    /* --- Primitive Palette --- */
+    --color-cream-50:  #FDFCF8;
+    --color-cream-100: #F8F5EE;
+    --color-cream-200: #F0EBE0;
+    --color-cream-300: #E4DDD0;
+    --color-warm-gray-400: #C8C0B4;
+    --color-warm-gray-500: #9E968A;
+    --color-warm-gray-600: #706860;
+    --color-warm-gray-700: #4A443E;
+    --color-ink-800:   #1E1A16;
+    --color-ink-900:   #0D0B08;
+    --color-ink-950:   #060504;
+
+    --color-gold-100:  #FFF8E6;
+    --color-gold-300:  #F5D98A;
+    --color-gold-500:  #D4A843;
+    --color-gold-700:  #9A7320;
+
+    --color-blue-100:  #EEF4FF;
+    --color-blue-500:  #3B82F6;
+    --color-blue-700:  #1D4ED8;
+
+    --color-red-500:   #EF4444;
+    --color-green-500: #22C55E;
+
+    /* --- Semantic Tokens: Surface --- */
+    --surface-page:          var(--color-cream-50);
+    --surface-elevated:      #FFFFFF;
+    --surface-subtle:        var(--color-cream-100);
+    --surface-muted:         var(--color-cream-200);
+    --surface-overlay:       rgba(13,11,8,0.48);
+    --surface-inverse:        var(--color-ink-900);
+
+    /* --- Semantic Tokens: Border --- */
+    --border-default:        var(--color-cream-300);
+    --border-subtle:         var(--color-cream-200);
+    --border-strong:         var(--color-warm-gray-500);
+    --border-inverse:        rgba(255,255,255,0.15);
+
+    /* --- Text/border on inverse surfaces (footer, dark blocks) — flips with surface-inverse --- */
+    --on-inverse-link:    rgba(245,240,232,0.75);
+    --on-inverse-muted:   rgba(245,240,232,0.6);
+    --on-inverse-subtle:  rgba(245,240,232,0.5);
+    --on-inverse-faint:   rgba(245,240,232,0.4);
+    --on-inverse-border:  rgba(255,255,255,0.15);
+    --on-inverse-hover:   rgba(255,255,255,0.10);
+
+    /* --- Semantic Tokens: Text --- */
+    --text-primary:          var(--color-ink-900);
+    --text-secondary:        var(--color-warm-gray-600);
+    --text-tertiary:         var(--color-warm-gray-500);
+    --text-disabled:         var(--color-warm-gray-400);
+    --text-inverse:          var(--color-cream-50);
+    --text-accent:           var(--color-gold-700);
+    --text-link:             var(--color-ink-900);
+    --text-link-hover:       var(--color-warm-gray-700);
+
+    /* --- Semantic Tokens: Interactive --- */
+    --interactive-primary-bg:      var(--color-ink-900);
+    --interactive-primary-text:    var(--color-cream-50);
+    --interactive-primary-hover:   var(--color-ink-800);
+    --interactive-secondary-bg:    transparent;
+    --interactive-secondary-text:  var(--color-ink-900);
+    --interactive-secondary-border: var(--color-ink-900);
+    --interactive-secondary-hover-bg: var(--color-cream-200);
+    --interactive-ghost-text:      var(--color-warm-gray-600);
+    --interactive-ghost-hover:     var(--color-ink-900);
+    --interactive-focus:           var(--color-blue-500);
+
+    /* --- Semantic Tokens: Feedback --- */
+    --feedback-success: var(--color-green-500);
+    --feedback-error:   var(--color-red-500);
+    --feedback-warning: var(--color-gold-500);
+    --feedback-info:    var(--color-blue-500);
+
+    /* --- Typography --- */
+    --font-display:  'Georgia', 'Times New Roman', serif;
+    --font-body:     -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    --font-mono:     'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+
+    --font-size-xs:   0.75rem;   /* 12px */
+    --font-size-sm:   0.875rem;  /* 14px */
+    --font-size-base: 1rem;      /* 16px */
+    --font-size-md:   1.125rem;  /* 18px */
+    --font-size-lg:   1.25rem;   /* 20px */
+    --font-size-xl:   1.5rem;    /* 24px */
+    --font-size-2xl:  2rem;      /* 32px */
+    --font-size-3xl:  2.5rem;    /* 40px */
+    --font-size-4xl:  3.5rem;    /* 56px */
+    --font-size-5xl:  5rem;      /* 80px */
+    --font-size-6xl:  7rem;      /* 112px */
+
+    --font-weight-regular: 400;
+    --font-weight-medium:  500;
+    --font-weight-semibold:600;
+    --font-weight-bold:    700;
+
+    --line-height-tight:   1.1;
+    --line-height-snug:    1.25;
+    --line-height-normal:  1.5;
+    --line-height-relaxed: 1.7;
+
+    --letter-spacing-tight:  -0.03em;
+    --letter-spacing-normal:  0;
+    --letter-spacing-wide:    0.04em;
+    --letter-spacing-widest:  0.12em;
+
+    /* --- Spacing --- */
+    --space-1:  0.25rem;  /* 4px */
+    --space-2:  0.5rem;   /* 8px */
+    --space-3:  0.75rem;  /* 12px */
+    --space-4:  1rem;     /* 16px */
+    --space-5:  1.25rem;  /* 20px */
+    --space-6:  1.5rem;   /* 24px */
+    --space-8:  2rem;     /* 32px */
+    --space-10: 2.5rem;   /* 40px */
+    --space-12: 3rem;     /* 48px */
+    --space-16: 4rem;     /* 64px */
+    --space-20: 5rem;     /* 80px */
+    --space-24: 6rem;     /* 96px */
+    --space-32: 8rem;     /* 128px */
+
+    /* --- Radius --- */
+    --radius-sm:   4px;
+    --radius-md:   8px;
+    --radius-lg:   16px;
+    --radius-xl:   24px;
+    --radius-full: 9999px;
+
+    /* --- Shadows --- */
+    --shadow-sm:  0 1px 2px rgba(13,11,8,0.06);
+    --shadow-md:  0 4px 12px rgba(13,11,8,0.08);
+    --shadow-lg:  0 12px 32px rgba(13,11,8,0.10);
+    --shadow-xl:  0 24px 64px rgba(13,11,8,0.14);
+
+    /* --- Highlights (dark-mode inverse of shadows; emphasis/glow) --- */
+    --highlight-top:    inset 0 1px 0 rgba(255,255,255,0.7);
+    --highlight-focus:  0 0 0 4px rgba(59,130,246,0.15);
+    --highlight-accent: 0 0 24px rgba(212,168,67,0.20);
+
+    /* --- Motion --- */
+    --duration-instant:   50ms;
+    --duration-fast:     150ms;
+    --duration-normal:   250ms;
+    --duration-slow:     400ms;
+    --duration-slower:   600ms;
+    --duration-slowest: 1000ms;
+
+    --ease-default:  cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-in:       cubic-bezier(0.4, 0, 1, 1);
+    --ease-out:      cubic-bezier(0, 0, 0.2, 1);
+    --ease-spring:   cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-editorial:cubic-bezier(0.25, 0.1, 0.0, 1.0);
+
+    /* --- Layout --- */
+    --container-sm:  640px;
+    --container-md:  768px;
+    --container-lg: 1024px;
+    --container-xl: 1280px;
+    --container-2xl:1440px;
+    --nav-height:    64px;
+    --grid-gutter:   var(--space-6);
+  }
+
+  /* ============================================================
+     DARK MODE TOKENS
+     ============================================================ */
+  [data-theme="dark"] {
+    --surface-page:     #0D0B08;
+    --surface-elevated: #1A1612;
+    --surface-subtle:   #221E19;
+    --surface-muted:    #2E2820;
+    --surface-inverse:  var(--color-cream-50);
+
+    --border-default:   #332D25;
+    --border-subtle:    #261F18;
+    --border-strong:    #5A5248;
+    --border-inverse:   rgba(255,255,255,0.12);
+
+    /* Dark mode: surface-inverse becomes light, so on-inverse text flips to dark */
+    --on-inverse-link:    rgba(13,11,8,0.78);
+    --on-inverse-muted:   rgba(13,11,8,0.65);
+    --on-inverse-subtle:  rgba(13,11,8,0.55);
+    --on-inverse-faint:   rgba(13,11,8,0.5);
+    --on-inverse-border:  rgba(13,11,8,0.15);
+    --on-inverse-hover:   rgba(13,11,8,0.06);
+
+    --text-primary:     #F5F0E8;
+    --text-secondary:   #A89F94;
+    --text-tertiary:    #7A726A;
+    --text-disabled:    #4A443E;
+    --text-inverse:     var(--color-ink-900);
+    --text-accent:      var(--color-gold-300);
+    --text-link:        #F5F0E8;
+    --text-link-hover:  #FFFFFF;
+
+    --interactive-primary-bg:    var(--color-cream-50);
+    --interactive-primary-text:  var(--color-ink-900);
+    --interactive-primary-hover: #FFFFFF;
+    --interactive-secondary-bg:    transparent;
+    --interactive-secondary-text:  #F5F0E8;
+    --interactive-secondary-border: #F5F0E8;
+    --interactive-secondary-hover-bg: rgba(245,240,232,0.08);
+    --interactive-ghost-text:    #A89F94;
+    --interactive-ghost-hover:   #F5F0E8;
+
+    --shadow-sm:  0 1px 2px rgba(0,0,0,0.3);
+    --shadow-md:  0 4px 12px rgba(0,0,0,0.4);
+    --shadow-lg:  0 12px 32px rgba(0,0,0,0.5);
+    --shadow-xl:  0 24px 64px rgba(0,0,0,0.6);
+
+    /* Dark mode: a top highlight carries elevation where shadow can't read */
+    --highlight-top:    inset 0 1px 0 rgba(255,255,255,0.10);
+    --highlight-focus:  0 0 0 4px rgba(245,217,138,0.18);
+    --highlight-accent: 0 0 28px rgba(245,217,138,0.22);
+  }
+
+  /* ============================================================
+     BASE RESET & GLOBALS
+     ============================================================ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body {
+    font-family: var(--font-body);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-normal);
+    color: var(--text-primary);
+    background: var(--surface-page);
+    transition: background var(--duration-normal) var(--ease-default),
+                color var(--duration-normal) var(--ease-default);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--text-link); text-decoration: none; }
+  a:hover { color: var(--text-link-hover); }
+  img { max-width: 100%; display: block; }
+
+  /* ============================================================
+     DS SHELL LAYOUT
+     ============================================================ */
+  .ds-shell { display: flex; min-height: 100vh; }
+
+  /* Sidebar */
+  .ds-sidebar {
+    width: 240px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    background: var(--surface-elevated);
+    border-right: 1px solid var(--border-default);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+  .ds-sidebar-logo {
+    font-family: var(--font-body);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-widest);
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .ds-sidebar-logo span {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--font-size-lg);
+    font-style: italic;
+    font-weight: var(--font-weight-regular);
+    color: var(--text-primary);
+    letter-spacing: 0;
+    text-transform: none;
+    margin-top: var(--space-1);
+  }
+  .ds-nav-group { display: flex; flex-direction: column; gap: var(--space-1); }
+
+  /* Collapsible group header (expand/collapse toggle) */
+  .ds-nav-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: var(--font-body);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-widest);
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    padding: var(--space-2) var(--space-2) var(--space-1);
+    border-radius: var(--radius-sm);
+    transition: color var(--duration-fast) var(--ease-default);
+  }
+  .ds-nav-label:hover { color: var(--text-secondary); }
+  .ds-nav-label .ds-nav-label-icon { font-size: 16px; line-height: 1; }
+  .ds-nav-label-text { flex: 1; }
+  /* Chevron rotates when collapsed */
+  .ds-nav-label .ds-nav-chevron {
+    font-size: 14px;
+    line-height: 1;
+    transition: transform var(--duration-fast) var(--ease-default);
+  }
+  .ds-nav-group.collapsed .ds-nav-chevron { transform: rotate(-90deg); }
+
+  /* Sub-section list (collapsible body) */
+  .ds-nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    overflow: hidden;
+    max-height: 600px;
+    transition: max-height var(--duration-normal) var(--ease-default),
+                opacity var(--duration-fast) var(--ease-default);
+  }
+  .ds-nav-group.collapsed .ds-nav-list {
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .ds-nav-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-sm);
+    transition: background var(--duration-fast) var(--ease-default),
+                color var(--duration-fast) var(--ease-default);
+  }
+  .ds-nav-link i { font-size: 16px; line-height: 1; flex-shrink: 0; opacity: 0.8; }
+  .ds-nav-link:hover { background: var(--surface-subtle); color: var(--text-primary); }
+  .ds-nav-link:hover i { opacity: 1; }
+  .ds-nav-link.active { background: var(--surface-muted); color: var(--text-primary); font-weight: var(--font-weight-medium); }
+  .ds-nav-link.active i { opacity: 1; }
+
+  /* Main Content */
+  .ds-main {
+    flex: 1;
+    overflow-x: hidden;
+    min-width: 0;
+  }
+
+  /* Top Bar */
+  .ds-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--surface-page);
+    border-bottom: 1px solid var(--border-default);
+    padding: 0 var(--space-10);
+    height: var(--nav-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .ds-topbar-title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-secondary);
+  }
+  .ds-theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-full);
+    background: var(--surface-elevated);
+    cursor: pointer;
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    transition: all var(--duration-fast) var(--ease-default);
+  }
+  .ds-theme-toggle:hover { background: var(--surface-subtle); color: var(--text-primary); }
+
+  /* Section wrapper */
+  .ds-section {
+    padding: var(--space-16) var(--space-10);
+    border-bottom: 1px solid var(--border-subtle);
+    max-width: var(--container-2xl);
+  }
+  .ds-section-header {
+    margin-bottom: var(--space-10);
+  }
+  .ds-section-eyebrow {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-widest);
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-2);
+  }
+  .ds-section-title {
+    font-family: var(--font-display);
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-regular);
+    font-style: italic;
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--letter-spacing-tight);
+    color: var(--text-primary);
+    margin-bottom: var(--space-3);
+  }
+  .ds-section-desc {
+    font-size: var(--font-size-md);
+    color: var(--text-secondary);
+    max-width: 600px;
+    line-height: var(--line-height-relaxed);
+  }
+  .ds-grid { display: grid; gap: var(--space-4); }
+  .ds-grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .ds-grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .ds-grid-4 { grid-template-columns: repeat(4, 1fr); }
+  .ds-flex { display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; }
+  .ds-card {
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-sm);
+  }
+  .ds-label {
+    font-size: var(--font-size-xs);
+    color: var(--text-tertiary);
+    margin-top: var(--space-3);
+    font-family: var(--font-mono);
+  }
+  .ds-divider {
+    border: none;
+    border-top: 1px solid var(--border-subtle);
+    margin: var(--space-8) 0;
+  }
+
+  /* ============================================================
+     1. COLOR SECTION
+     ============================================================ */
+  .color-swatch {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+  }
+  .color-swatch-block {
+    height: 80px;
+    width: 100%;
+  }
+  .color-swatch-info {
+    padding: var(--space-3) var(--space-4);
+    background: var(--surface-elevated);
+  }
+  .color-swatch-name {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+  }
+  .color-swatch-value {
+    font-size: var(--font-size-xs);
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    margin-top: var(--space-1);
+  }
+  .color-swatch-token {
+    font-size: 10px;
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    margin-top: 2px;
+  }
+
+  /* Semantic token table */
+  .token-table { width: 100%; border-collapse: collapse; }
+  .token-table th {
+    text-align: left;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    padding: var(--space-2) var(--space-4);
+    border-bottom: 1px solid var(--border-default);
+  }
+  .token-table td {
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--font-size-sm);
+    border-bottom: 1px solid var(--border-subtle);
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  .token-table td:last-child { white-space: normal; }
+  .token-table td:first-child { font-family: var(--font-mono); color: var(--text-secondary); }
+  .token-swatch {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-default);
+    vertical-align: middle;
+    margin-right: var(--space-2);
+  }
+
+  /* ============================================================
+     2. TYPOGRAPHY SECTION
+     ============================================================ */
+  .type-specimen { margin-bottom: var(--space-8); }
+  .type-meta {
+    font-size: var(--font-size-xs);
+    font-family: var(--font-mono);
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-3);
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    gap: var(--space-4);
+  }
+
+  /* ============================================================
+     3. SPACING SECTION
+     ============================================================ */
+  .space-row { display: flex; align-items: center; gap: var(--space-4); margin-bottom: var(--space-3); }
+  .space-bar {
+    background: var(--color-gold-300);
+    height: 8px;
+    border-radius: var(--radius-sm);
+    flex-shrink: 0;
+  }
+  .space-info { font-size: var(--font-size-sm); color: var(--text-secondary); font-family: var(--font-mono); }
+
+  /* ============================================================
+     4. COMPONENT DEMOS
+     ============================================================ */
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    font-family: var(--font-body);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: var(--radius-full);
+    padding: var(--space-3) var(--space-6);
+    transition: all var(--duration-fast) var(--ease-default);
+    text-decoration: none;
+    letter-spacing: var(--letter-spacing-normal);
+  }
+  .btn:focus-visible {
+    outline: 2px solid var(--interactive-focus);
+    outline-offset: 2px;
+  }
+  .btn-primary {
+    background: var(--interactive-primary-bg);
+    color: var(--interactive-primary-text);
+    border-color: var(--interactive-primary-bg);
+  }
+  .btn-primary:hover {
+    background: var(--interactive-primary-hover);
+    color: var(--interactive-primary-text);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+  }
+  .btn-secondary {
+    background: var(--interactive-secondary-bg);
+    color: var(--interactive-secondary-text);
+    border-color: var(--interactive-secondary-border);
+  }
+  .btn-secondary:hover {
+    background: var(--interactive-secondary-hover-bg);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--interactive-ghost-text);
+    border-color: transparent;
+    padding-left: 0; padding-right: 0;
+  }
+  .btn-ghost:hover { color: var(--interactive-ghost-hover); }
+  .btn-ghost::after {
+    content: '→';
+    margin-left: var(--space-1);
+    transition: transform var(--duration-fast) var(--ease-default);
+  }
+  .btn-ghost:hover::after { transform: translateX(4px); }
+  .btn-sm { font-size: var(--font-size-xs); padding: var(--space-2) var(--space-4); }
+  .btn-lg { font-size: var(--font-size-base); padding: var(--space-4) var(--space-8); }
+  .btn-disabled, .btn[disabled] { opacity: 0.38; cursor: not-allowed; pointer-events: none; }
+
+  /* Navigation */
+  .nav-demo {
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    padding: 0 var(--space-8);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: var(--font-size-base);
+    font-style: italic;
+    color: var(--text-primary);
+    font-weight: var(--font-weight-regular);
+  }
+  .nav-links { display: flex; align-items: center; gap: var(--space-8); }
+  .nav-link {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    transition: color var(--duration-fast) var(--ease-default);
+    letter-spacing: var(--letter-spacing-normal);
+  }
+  .nav-link:hover { color: var(--text-primary); }
+  .nav-link.active { color: var(--text-primary); font-weight: var(--font-weight-medium); }
+  .nav-cta {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--interactive-primary-text);
+    background: var(--interactive-primary-bg);
+    padding: var(--space-2) var(--space-5);
+    border-radius: var(--radius-full);
+    transition: all var(--duration-fast) var(--ease-default);
+  }
+  .nav-cta:hover { opacity: 0.85; color: var(--interactive-primary-text); }
+
+  /* Cards */
+  .news-card {
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: transform var(--duration-normal) var(--ease-out),
+                box-shadow var(--duration-normal) var(--ease-out);
+    cursor: pointer;
+  }
+  .news-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+  .news-card-img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: var(--surface-muted);
+    position: relative;
+    overflow: hidden;
+  }
+  .news-card-img-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--color-cream-200) 0%, var(--color-cream-300) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-tertiary);
+    font-size: var(--font-size-xs);
+    font-family: var(--font-mono);
+  }
+  .news-card-body { padding: var(--space-5); }
+  .news-card-tag {
+    display: inline-block;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-3);
+  }
+  .news-card-title {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-snug);
+    color: var(--text-primary);
+    margin-bottom: var(--space-3);
+  }
+  .news-card-meta {
+    font-size: var(--font-size-xs);
+    color: var(--text-tertiary);
+  }
+
+  /* Value card */
+  .value-card {
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+    transition: border-color var(--duration-normal) var(--ease-default);
+  }
+  .value-card:hover { border-color: var(--border-strong); }
+  .value-card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    background: var(--surface-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-4);
+    font-size: var(--font-size-lg);
+  }
+  .value-card-title {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+  }
+  .value-card-desc {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    line-height: var(--line-height-relaxed);
+  }
+
+  /* Tags / Pills */
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-default);
+    border: 1px solid transparent;
+  }
+  .tag-default {
+    background: var(--surface-muted);
+    color: var(--text-secondary);
+    border-color: var(--border-default);
+  }
+  .tag-default:hover { background: var(--surface-subtle); color: var(--text-primary); }
+  .tag-active {
+    background: var(--text-primary);
+    color: var(--surface-page);
+    border-color: var(--text-primary);
+  }
+  .tag-gold {
+    background: var(--color-gold-100);
+    color: var(--color-gold-700);
+    border-color: var(--color-gold-300);
+  }
+
+  /* Model card */
+  .model-card {
+    background: var(--surface-subtle);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+    position: relative;
+    overflow: hidden;
+    transition: all var(--duration-normal) var(--ease-out);
+  }
+  .model-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--color-gold-300), transparent);
+    opacity: 0;
+    transition: opacity var(--duration-normal) var(--ease-default);
+  }
+  .model-card:hover::before { opacity: 1; }
+  .model-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  .model-card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    background: var(--surface-muted);
+    margin-bottom: var(--space-4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+  }
+  .model-card-name {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+  }
+  .model-card-desc {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    line-height: var(--line-height-relaxed);
+  }
+  .model-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+    margin-top: var(--space-4);
+    transition: gap var(--duration-fast) var(--ease-default);
+  }
+  .model-card-link:hover { gap: var(--space-2); }
+
+  /* Tab switcher */
+  .tab-group { display: flex; gap: var(--space-1); border-bottom: 1px solid var(--border-default); margin-bottom: var(--space-6); }
+  .tab {
+    padding: var(--space-3) var(--space-5);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-tertiary);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all var(--duration-fast) var(--ease-default);
+    background: none;
+    border-top: none; border-left: none; border-right: none;
+    font-family: var(--font-body);
+    margin-bottom: -1px;
+  }
+  .tab:hover { color: var(--text-primary); }
+  .tab.active {
+    color: var(--text-primary);
+    border-bottom-color: var(--text-primary);
+  }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* Hero pattern */
+  .hero-demo {
+    background: var(--surface-page);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+    padding: var(--space-16) var(--space-10);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-demo::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 50% at 50% -20%, var(--color-cream-200), transparent);
+    pointer-events: none;
+  }
+  [data-theme="dark"] .hero-demo::before {
+    background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(212,168,67,0.06), transparent);
+  }
+  .hero-eyebrow {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-widest);
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-4);
+  }
+  .hero-headline {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--letter-spacing-tight);
+    color: var(--text-primary);
+    margin-bottom: var(--space-6);
+  }
+  .hero-headline em {
+    font-style: italic;
+    color: var(--text-primary);
+  }
+  .hero-sub {
+    font-size: var(--font-size-md);
+    color: var(--text-secondary);
+    max-width: 480px;
+    margin: 0 auto var(--space-8);
+    line-height: var(--line-height-relaxed);
+  }
+  .hero-actions { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; }
+
+  /* Section split */
+  .split-demo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-10);
+    align-items: center;
+    padding: var(--space-10);
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+  }
+  .split-img-placeholder {
+    aspect-ratio: 4/3;
+    background: var(--surface-muted);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-tertiary);
+    font-size: var(--font-size-xs);
+    font-family: var(--font-mono);
+  }
+  .split-content-eyebrow {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-widest);
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: var(--space-3);
+  }
+  .split-content-title {
+    font-family: var(--font-display);
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--letter-spacing-tight);
+    color: var(--text-primary);
+    margin-bottom: var(--space-4);
+  }
+  .split-content-body {
+    font-size: var(--font-size-base);
+    color: var(--text-secondary);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-6);
+  }
+
+  /* Location card */
+  .location-card {
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: transform var(--duration-normal) var(--ease-out),
+                box-shadow var(--duration-normal) var(--ease-out);
+    cursor: pointer;
+  }
+  .location-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .location-img {
+    aspect-ratio: 3/2;
+    background: linear-gradient(135deg, var(--color-cream-200), var(--color-cream-300));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-tertiary);
+    font-size: var(--font-size-xs);
+    font-family: var(--font-mono);
+  }
+  .location-body { padding: var(--space-5); }
+  .location-city {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+  }
+  .location-desc {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-4);
+  }
+
+  /* Footer */
+  .footer-demo {
+    background: var(--surface-inverse);
+    border-radius: var(--radius-xl);
+    padding: var(--space-10);
+    color: var(--text-inverse);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: var(--space-10);
+    margin-bottom: var(--space-8);
+    padding-bottom: var(--space-8);
+    border-bottom: 1px solid var(--on-inverse-border);
+  }
+  .footer-brand {
+    font-family: var(--font-display);
+    font-size: var(--font-size-2xl);
+    font-style: italic;
+    color: var(--text-inverse);
+    margin-bottom: var(--space-4);
+  }
+  .footer-tagline {
+    font-size: var(--font-size-sm);
+    color: var(--on-inverse-muted);
+    line-height: var(--line-height-relaxed);
+    max-width: 280px;
+  }
+  .footer-col-label {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-widest);
+    text-transform: uppercase;
+    color: var(--on-inverse-subtle);
+    margin-bottom: var(--space-4);
+  }
+  .footer-col-links { display: flex; flex-direction: column; gap: var(--space-3); }
+  .footer-col-link {
+    font-size: var(--font-size-sm);
+    color: var(--on-inverse-link);
+    transition: color var(--duration-fast) var(--ease-default);
+  }
+  .footer-col-link:hover { color: var(--text-inverse); }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+  }
+  .footer-copy { font-size: var(--font-size-xs); color: var(--on-inverse-faint); }
+  .footer-social { display: flex; gap: var(--space-4); }
+  .footer-social-link {
+    width: 32px; height: 32px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--on-inverse-border);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--on-inverse-muted);
+    font-size: var(--font-size-xs);
+    transition: all var(--duration-fast) var(--ease-default);
+    text-decoration: none;
+  }
+  .footer-social-link:hover {
+    background: var(--on-inverse-hover);
+    color: var(--text-inverse);
+  }
+
+  /* Form elements */
+  .form-group { display: flex; flex-direction: column; gap: var(--space-2); margin-bottom: var(--space-5); }
+  .form-label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-primary);
+  }
+  .form-input {
+    width: 100%;
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--font-size-base);
+    font-family: var(--font-body);
+    color: var(--text-primary);
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    outline: none;
+    transition: border-color var(--duration-fast) var(--ease-default),
+                box-shadow var(--duration-fast) var(--ease-default);
+  }
+  .form-input::placeholder { color: var(--text-tertiary); }
+  .form-input:hover { border-color: var(--border-strong); }
+  .form-input:focus {
+    border-color: var(--interactive-focus);
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+  }
+  .form-input.error { border-color: var(--feedback-error); }
+  .form-input.success { border-color: var(--feedback-success); }
+  .form-hint { font-size: var(--font-size-xs); color: var(--text-tertiary); }
+  .form-hint.error { color: var(--feedback-error); }
+
+  /* Ticker/marquee */
+  .marquee-wrap {
+    overflow: hidden;
+    border-top: 1px solid var(--border-default);
+    border-bottom: 1px solid var(--border-default);
+    padding: var(--space-4) 0;
+  }
+  .marquee-track {
+    display: flex;
+    gap: var(--space-10);
+    animation: marquee 18s linear infinite;
+    width: max-content;
+  }
+  .marquee-item {
+    font-family: var(--font-display);
+    font-size: var(--font-size-xl);
+    font-style: italic;
+    color: var(--text-tertiary);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* Progress / Loading */
+  .skeleton {
+    background: linear-gradient(90deg, var(--surface-muted) 25%, var(--surface-subtle) 50%, var(--surface-muted) 75%);
+    background-size: 200% 100%;
+    border-radius: var(--radius-sm);
+    animation: skeleton-shimmer 1.5s infinite;
+  }
+  @keyframes skeleton-shimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* Accessible focus visible */
+  :focus-visible {
+    outline: 2px solid var(--interactive-focus);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* ============================================================
+     MOTION — EASING VISUALIZER
+     ============================================================ */
+  .ease-list { display: flex; flex-direction: column; gap: var(--space-2); }
+  .ease-row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+    transition: background var(--duration-fast) var(--ease-default),
+                border-color var(--duration-fast) var(--ease-default);
+    cursor: pointer;
+  }
+  .ease-row:hover, .ease-row:focus-visible { background: var(--surface-subtle); border-color: var(--border-default); outline: none; }
+  /* single-line spec: intent + token, no wrap */
+  .ease-spec {
+    display: flex; align-items: baseline; gap: var(--space-3);
+    white-space: nowrap; overflow-x: auto;
+  }
+  .ease-intent { font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); color: var(--text-primary); }
+  .ease-tag {
+    font-size: 10px; font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wide); text-transform: uppercase;
+    color: var(--text-tertiary); margin-left: var(--space-1);
+  }
+  .ease-token { font-family: var(--font-mono); font-size: var(--font-size-xs); color: var(--text-tertiary); }
+  .ease-demo { display: flex; align-items: center; gap: var(--space-4); }
+  .ease-curve { width: 36px; height: 36px; flex-shrink: 0; overflow: visible; }
+  .ease-curve path { fill: none; stroke: var(--text-tertiary); stroke-width: 2; vector-effect: non-scaling-stroke; }
+  .ease-row:hover .ease-curve path, .ease-row:focus-visible .ease-curve path { stroke: var(--text-accent); }
+  .ease-track {
+    position: relative; flex: 1; height: 8px; border-radius: var(--radius-full);
+    background: var(--surface-muted); border: 1px solid var(--border-subtle);
+  }
+  .ease-dot {
+    position: absolute; top: 50%; left: 0;
+    width: 16px; height: 16px; margin-top: -8px; margin-left: -2px;
+    border-radius: var(--radius-full);
+    background: var(--text-primary);
+    box-shadow: var(--shadow-sm);
+  }
+  .ease-row:hover .ease-dot, .ease-row:focus-visible .ease-dot {
+    animation: ease-travel 1.9s var(--bz) infinite alternate;
+  }
+  /* dot reaches the end at 74% of the cycle, then holds ~0.5s — a pause at each extreme */
+  @keyframes ease-travel {
+    0%        { left: 0;    transform: translateX(0); }
+    74%, 100% { left: 100%; transform: translateX(-100%); }
+  }
+
+  /* ============================================================
+     SHADOWS & HIGHLIGHTS
+     ============================================================ */
+  .elevation-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-6); }
+  .elevation-card {
+    background: var(--surface-elevated);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    min-height: 120px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    border: 1px solid var(--border-subtle);
+  }
+  .elevation-card .ds-label { margin-top: var(--space-2); }
+  .zero-state {
+    border: 1px dashed var(--border-strong);
+    border-radius: var(--radius-lg);
+    padding: var(--space-10);
+    text-align: center;
+    background: var(--surface-subtle);
+  }
+  .zero-state-icon { font-size: 32px; color: var(--text-tertiary); margin-bottom: var(--space-3); }
+  .zero-state-title { font-size: var(--font-size-base); font-weight: var(--font-weight-semibold); color: var(--text-primary); margin-bottom: var(--space-2); }
+  .zero-state-desc { font-size: var(--font-size-sm); color: var(--text-secondary); max-width: 420px; margin: 0 auto var(--space-5); line-height: var(--line-height-relaxed); }
+
+  /* Download / source list (fonts & icons dialogs) */
+  .asset-item {
+    display: flex; align-items: center; justify-content: space-between; gap: var(--space-4);
+    padding: var(--space-4) 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .asset-item:last-child { border-bottom: none; }
+  .asset-name { font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); color: var(--text-primary); }
+  .asset-meta { font-size: var(--font-size-xs); color: var(--text-tertiary); margin-top: 2px; }
+  .asset-badge {
+    font-size: 10px; font-weight: var(--font-weight-semibold); text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide); padding: 2px var(--space-2);
+    border-radius: var(--radius-full); border: 1px solid var(--border-default); color: var(--text-secondary);
+  }
+  .asset-badge.free { color: var(--color-green-500); border-color: var(--color-green-500); }
+  .asset-badge.paid { color: var(--color-gold-700); border-color: var(--color-gold-300); background: var(--color-gold-100); }
+  .asset-badge.system { color: var(--text-tertiary); }
+
+  /* ============================================================
+     DASHBOARD / OVERVIEW
+     ============================================================ */
+  .ds-dashboard-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    margin-top: var(--space-3);
+  }
+  .ds-dashboard-meta .ds-avatar {
+    width: 32px; height: 32px;
+    border-radius: var(--radius-full);
+    background: var(--surface-inverse);
+    color: var(--text-inverse);
+    display: flex; align-items: center; justify-content: center;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wide);
+  }
+  .metric-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--space-4);
+  }
+  .metric-card {
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    position: relative;
+  }
+  .metric-card-icon {
+    width: 36px; height: 36px;
+    border-radius: var(--radius-md);
+    background: var(--surface-muted);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    color: var(--text-secondary);
+  }
+  .metric-value {
+    font-family: var(--font-display);
+    font-size: var(--font-size-3xl);
+    line-height: var(--line-height-tight);
+    color: var(--text-primary);
+  }
+  .metric-label {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+  .metric-card.is-future { opacity: 0.85; }
+  .metric-badge {
+    position: absolute;
+    top: var(--space-4); right: var(--space-4);
+    font-size: 10px;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    color: var(--color-gold-700);
+    background: var(--color-gold-100);
+    border: 1px solid var(--color-gold-300);
+    border-radius: var(--radius-full);
+    padding: 2px var(--space-2);
+  }
+
+  /* ============================================================
+     SUPPORT / FEEDBACK
+     ============================================================ */
+  .support-panel {
+    background: var(--surface-subtle);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+    padding: var(--space-12) var(--space-10);
+    text-align: center;
+  }
+  .support-panel-icon {
+    width: 56px; height: 56px;
+    border-radius: var(--radius-full);
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-default);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 28px;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-5);
+  }
+  .support-panel-title {
+    font-family: var(--font-display);
+    font-size: var(--font-size-2xl);
+    font-style: italic;
+    color: var(--text-primary);
+    margin-bottom: var(--space-3);
+  }
+  .support-panel-desc {
+    font-size: var(--font-size-md);
+    color: var(--text-secondary);
+    max-width: 460px;
+    margin: 0 auto var(--space-6);
+    line-height: var(--line-height-relaxed);
+  }
+
+  /* ============================================================
+     MODULES — addable / removable design-system blocks
+     Mirrors the Feedback & Enhancements card. Active modules show
+     a Remove pill; removed ones collapse to a slim re-add stub and
+     are flagged data-included="false" (excluded from export).
+     ============================================================ */
+  .ds-module + .ds-module { margin-top: var(--space-6); }
+
+  /* Full card (shown when included) */
+  .ds-module-card {
+    position: relative;
+    background: var(--surface-subtle);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+    padding: var(--space-12) var(--space-10);
+    text-align: center;
+    transition: opacity var(--duration-normal) var(--ease-default);
+  }
+  /* Corner Remove control — same upper-right position as the stub's Add */
+  .ds-module-remove {
+    position: absolute;
+    top: var(--space-5);
+    right: var(--space-5);
+    display: inline-flex; align-items: center; gap: var(--space-2);
+    background: transparent;
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-full);
+    padding: var(--space-2) var(--space-4);
+    font-family: var(--font-body);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-tertiary);
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-default);
+  }
+  .ds-module-remove:hover {
+    color: var(--text-primary);
+    border-color: var(--border-strong);
+    background: var(--surface-elevated);
+  }
+  .ds-module-remove i { font-size: 14px; }
+  .ds-module-icon {
+    width: 56px; height: 56px;
+    border-radius: var(--radius-full);
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-default);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 28px;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-5);
+  }
+  .ds-module-title {
+    font-family: var(--font-display);
+    font-size: var(--font-size-2xl);
+    font-style: italic;
+    color: var(--text-primary);
+    margin-bottom: var(--space-3);
+  }
+  .ds-module-desc {
+    font-size: var(--font-size-md);
+    color: var(--text-secondary);
+    max-width: 460px;
+    margin: 0 auto var(--space-6);
+    line-height: var(--line-height-relaxed);
+  }
+  /* In-card pill (Remove on active modules) */
+  .ds-module-pill { /* uses .btn .btn-secondary; nothing extra needed */ }
+
+  /* Slim re-add stub (shown when excluded) */
+  .ds-module-stub {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    background: var(--surface-subtle);
+    border: 1px dashed var(--border-strong);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4) var(--space-5);
+  }
+  .ds-module-stub-label {
+    display: flex; align-items: center; gap: var(--space-3);
+    font-size: var(--font-size-sm);
+    color: var(--text-tertiary);
+  }
+  .ds-module-stub-label i { font-size: 18px; }
+  .ds-module-stub-name { color: var(--text-secondary); font-weight: var(--font-weight-medium); }
+
+  /* Excluded state: hide card, reveal stub */
+  .ds-module.is-excluded .ds-module-card { display: none; }
+  .ds-module.is-excluded .ds-module-stub { display: flex; }
+
+  /* Modal dialog */
+  .ds-dialog { border: none; padding: 0; background: transparent; max-width: 480px; width: 92vw; }
+  .ds-dialog::backdrop { background: var(--surface-overlay); backdrop-filter: blur(4px); }
+  .ds-dialog[open] { animation: dialog-in var(--duration-normal) var(--ease-spring); }
+  @keyframes dialog-in {
+    from { opacity: 0; transform: translateY(12px) scale(0.98); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .ds-dialog-card {
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    padding: var(--space-8);
+  }
+  .ds-dialog-header { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-6); }
+  .ds-dialog-title {
+    font-family: var(--font-display);
+    font-size: var(--font-size-xl);
+    font-style: italic;
+    color: var(--text-primary);
+  }
+  .ds-dialog-sub { font-size: var(--font-size-sm); color: var(--text-secondary); margin-top: var(--space-1); }
+  .ds-dialog-close {
+    background: none; border: none; cursor: pointer;
+    color: var(--text-tertiary); font-size: 22px; line-height: 1;
+    padding: var(--space-1); border-radius: var(--radius-sm);
+    transition: color var(--duration-fast) var(--ease-default);
+  }
+  .ds-dialog-close:hover { color: var(--text-primary); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+  .form-counter { font-size: var(--font-size-xs); color: var(--text-tertiary); text-align: right; }
+  .ds-dialog-footer { display: flex; justify-content: flex-end; gap: var(--space-3); margin-top: var(--space-6); }
+  .ds-dialog-meta {
+    font-size: var(--font-size-xs);
+    font-family: var(--font-mono);
+    color: var(--text-tertiary);
+    margin-top: var(--space-5);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--border-subtle);
+  }
+  .form-success {
+    text-align: center;
+    padding: var(--space-6) 0;
+  }
+  .form-success-icon { font-size: 40px; color: var(--feedback-success); margin-bottom: var(--space-3); }
+
+  /* Responsive */
+  @media (max-width: 1100px) { .metric-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 900px) {
+    .ds-sidebar { display: none; }
+    .ds-grid-3 { grid-template-columns: repeat(2, 1fr); }
+    .ds-grid-4 { grid-template-columns: repeat(2, 1fr); }
+    .split-demo { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .ds-section { padding: var(--space-10) var(--space-6); }
+    .ds-topbar { padding: 0 var(--space-6); }
+    .ds-grid-2, .ds-grid-3, .ds-grid-4 { grid-template-columns: 1fr; }
+    .metric-grid { grid-template-columns: repeat(2, 1fr); }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="ds-shell">
+
+  <!-- =========================================================
+       SIDEBAR NAV
+       ========================================================= -->
+  <nav class="ds-sidebar" aria-label="Design system navigation">
+    <div class="ds-sidebar-logo">
+      MAI
+      <span>Design System</span>
+    </div>
+
+    <div class="ds-nav-group">
+      <button class="ds-nav-label" aria-expanded="true" onclick="toggleNavGroup(this)">
+        <i class="ph ph-gauge ds-nav-label-icon"></i>
+        <span class="ds-nav-label-text">Overview</span>
+        <i class="ph ph-caret-down ds-nav-chevron"></i>
+      </button>
+      <div class="ds-nav-list">
+        <a href="#dashboard" class="ds-nav-link"><i class="ph ph-plus"></i>Dashboard</a>
+      </div>
+    </div>
+
+    <div class="ds-nav-group">
+      <button class="ds-nav-label" aria-expanded="true" onclick="toggleNavGroup(this)">
+        <i class="ph ph-stack ds-nav-label-icon"></i>
+        <span class="ds-nav-label-text">Foundation</span>
+        <i class="ph ph-caret-down ds-nav-chevron"></i>
+      </button>
+      <div class="ds-nav-list">
+        <a href="#colors" class="ds-nav-link"><i class="ph ph-plus"></i>Colors</a>
+        <a href="#tokens" class="ds-nav-link"><i class="ph ph-plus"></i>Semantic Tokens</a>
+        <a href="#typography" class="ds-nav-link"><i class="ph ph-plus"></i>Typography</a>
+        <a href="#spacing" class="ds-nav-link"><i class="ph ph-plus"></i>Spacing</a>
+        <a href="#motion" class="ds-nav-link"><i class="ph ph-plus"></i>Motion</a>
+        <a href="#iconography" class="ds-nav-link"><i class="ph ph-plus"></i>Iconography</a>
+        <a href="#shadows" class="ds-nav-link"><i class="ph ph-plus"></i>Shadows &amp; Highlights</a>
+        <a href="#photography" class="ds-nav-link"><i class="ph ph-plus"></i>Photography</a>
+      </div>
+    </div>
+
+    <div class="ds-nav-group">
+      <button class="ds-nav-label" aria-expanded="true" onclick="toggleNavGroup(this)">
+        <i class="ph ph-puzzle-piece ds-nav-label-icon"></i>
+        <span class="ds-nav-label-text">Components</span>
+        <i class="ph ph-caret-down ds-nav-chevron"></i>
+      </button>
+      <div class="ds-nav-list">
+        <a href="#buttons" class="ds-nav-link"><i class="ph ph-plus"></i>Buttons</a>
+        <a href="#navigation" class="ds-nav-link"><i class="ph ph-plus"></i>Navigation</a>
+        <a href="#tags" class="ds-nav-link"><i class="ph ph-plus"></i>Tags & Pills</a>
+        <a href="#cards" class="ds-nav-link"><i class="ph ph-plus"></i>Cards</a>
+        <a href="#tabs" class="ds-nav-link"><i class="ph ph-plus"></i>Tabs</a>
+        <a href="#forms" class="ds-nav-link"><i class="ph ph-plus"></i>Forms</a>
+      </div>
+    </div>
+
+    <div class="ds-nav-group">
+      <button class="ds-nav-label" aria-expanded="true" onclick="toggleNavGroup(this)">
+        <i class="ph ph-squares-four ds-nav-label-icon"></i>
+        <span class="ds-nav-label-text">Patterns</span>
+        <i class="ph ph-caret-down ds-nav-chevron"></i>
+      </button>
+      <div class="ds-nav-list">
+        <a href="#hero" class="ds-nav-link"><i class="ph ph-plus"></i>Hero</a>
+        <a href="#split" class="ds-nav-link"><i class="ph ph-plus"></i>Section Split</a>
+        <a href="#models" class="ds-nav-link"><i class="ph ph-plus"></i>Model Grid</a>
+        <a href="#news-grid" class="ds-nav-link"><i class="ph ph-plus"></i>News Grid</a>
+        <a href="#locations" class="ds-nav-link"><i class="ph ph-plus"></i>Location Grid</a>
+        <a href="#marquee" class="ds-nav-link"><i class="ph ph-plus"></i>Marquee / Ticker</a>
+        <a href="#footer" class="ds-nav-link"><i class="ph ph-plus"></i>Footer</a>
+      </div>
+    </div>
+
+    <div class="ds-nav-group">
+      <button class="ds-nav-label" aria-expanded="true" onclick="toggleNavGroup(this)">
+        <i class="ph ph-squares-four ds-nav-label-icon"></i>
+        <span class="ds-nav-label-text">Modules</span>
+        <i class="ph ph-caret-down ds-nav-chevron"></i>
+      </button>
+      <div class="ds-nav-list">
+        <a href="#modules" class="ds-nav-link"><i class="ph ph-stack"></i>Add-on Systems</a>
+      </div>
+    </div>
+
+    <div class="ds-nav-group">
+      <button class="ds-nav-label" aria-expanded="true" onclick="toggleNavGroup(this)">
+        <i class="ph ph-lifebuoy ds-nav-label-icon"></i>
+        <span class="ds-nav-label-text">Support</span>
+        <i class="ph ph-caret-down ds-nav-chevron"></i>
+      </button>
+      <div class="ds-nav-list">
+        <a href="#support" class="ds-nav-link"><i class="ph ph-plus"></i>Feedback</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- =========================================================
+       MAIN
+       ========================================================= -->
+  <div class="ds-main">
+
+    <!-- Top Bar -->
+    <header class="ds-topbar">
+      <span class="ds-topbar-title">microsoft.ai — Web Design System v1.0</span>
+      <div style="display:flex;align-items:center;gap:var(--space-3);">
+        <button class="ds-theme-toggle" onclick="openFontDownloads()" aria-label="Download font families">
+          <i class="ph ph-download-simple"></i>
+          <span>Download fonts</span>
+        </button>
+        <button class="ds-theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+          <span id="theme-icon">☀️</span>
+          <span id="theme-label">Light</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- =========================================================
+         SECTION: DASHBOARD / OVERVIEW
+         ========================================================= -->
+    <section class="ds-section" id="dashboard">
+      <div class="ds-section-header">
+        <div class="ds-section-eyebrow">Overview</div>
+        <h2 class="ds-section-title">Dashboard</h2>
+        <p class="ds-section-desc">A live snapshot of the MAI design system — its scale, adoption, and health at a glance.</p>
+        <div class="ds-dashboard-meta">
+          <span class="ds-avatar">ND</span>
+          <span>Created by <strong style="color:var(--text-primary);font-weight:var(--font-weight-medium);">Noah DiJulio</strong> · <span id="dash-version">v1.0</span></span>
+        </div>
+      </div>
+      <div class="metric-grid">
+        <div class="metric-card">
+          <div class="metric-card-icon"><i class="ph ph-puzzle-piece"></i></div>
+          <div class="metric-value">13</div>
+          <div class="metric-label">Components</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-card-icon"><i class="ph ph-brackets-curly"></i></div>
+          <div class="metric-value">118</div>
+          <div class="metric-label">Design Tokens</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-card-icon"><i class="ph ph-users-three"></i></div>
+          <div class="metric-value">1</div>
+          <div class="metric-label">Active Users</div>
+        </div>
+        <div class="metric-card is-future">
+          <span class="metric-badge">Soon</span>
+          <div class="metric-card-icon"><i class="ph ph-buildings"></i></div>
+          <div class="metric-value">—</div>
+          <div class="metric-label">Teams</div>
+        </div>
+        <div class="metric-card is-future">
+          <span class="metric-badge">Soon</span>
+          <div class="metric-card-icon"><i class="ph ph-ticket"></i></div>
+          <div class="metric-value">—</div>
+          <div class="metric-label">Support Tickets</div>
+        </div>
+      </div>
+      <p class="ds-label" style="margin-top:var(--space-4);">Active users is an illustrative placeholder. Teams and Support Tickets arrive in a future release.</p>
+    </section>
+
+    <!-- =========================================================
+         SECTION: COLORS
+         ========================================================= -->
+    <section class="ds-section" id="colors">
+      <div class="ds-section-header">
+        <div class="ds-section-eyebrow">Foundation · 01</div>
+        <h2 class="ds-section-title">Colors</h2>
+        <p class="ds-section-desc">MAI uses a warm, editorial palette anchored in cream and near-black ink tones — humanist and approachable, with gold as a subtle editorial accent.</p>
+      </div>
+
+      <h3 style="font-size:var(--font-size-sm);font-weight:var(--font-weight-semibold);color:var(--text-secondary);letter-spacing:var(--letter-spacing-wide);text-transform:uppercase;margin-bottom:var(--space-4);">Primitive — Cream Scale</h3>
+      <div class="ds-grid ds-grid-4" style="margin-bottom:var(--space-8);">
+        <div class="color-swatch">
+          <div class="color-swatch-block" style="background:#FDFCF8;border-bottom:1px solid var(--border-subtle);"></div>
+          <div class="color-swatch-info">
+            <div class="color-swatch-name">Cream 50</div>
+            <div class="color-swatch-value">#FDFCF8</div>
+            <div class="color-swatch-token">--color-cream-50</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch-block" style="background:#F8F5EE;"></div>
+          <div class="color-swatch-info">
+            <div class="color-swatch-name">Cream 100</div>
+            <div class="color-swatch-value">#F8F5EE</div>
+            <div class="color-swatch-token">--color-cream-100</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch-block" style="background:#F0EBE0;"></div>
+          <div class="color-swatch-info">
+            <div class="color-swatch-name">Cream 200</div>
+            <div class="color-swatch-value">#F0EBE0</div>
+            <div class="color-swatch-token">--color-cream-200</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch-block" style="background:#E4DDD0;"></div>
+          <div class="color-swatch-info">
+            <div class="color-swatch-name">Cream 300</div>
+            <div class="color-swatch-value">#E4DDD0</div>
+            <div class="color-swatch-token">--color-cream-300</div>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="font-size:var(--font-size-sm);font-weight:var(--font-weight-semibold);color:var(--text-secondary);letter-spacing:var(--letter-spacing-wide);text-transform:uppercase;margin-bottom:var(--space-4);">Primitive — Warm Gray & Ink</h3>
+      <div class="ds-grid ds-grid-4" style="margin-bottom:var(--space-8);">
+        <div class="color-swatch">
+          <div class="color-swatch-block" style="background:#C8C0B4;"></div>
+          <div class="color-swatch-info">
+            <div class="color-swatch-name">Warm Gray 400</div>
+            <div class="color-swatch-value">#C8C0B4</div>
+            <div class="color-swatch-token">--color-warm-gray-400</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch-block" style="background:#9E968A;"></div>
+          <div class="color-swatch-info">
+            <div class="color-swatch-name">Warm Gray 500</div>
+            <div class="color-swatch-value">#9E968A</div>
+            <div class="color-swatch-token">--color-warm-gray-500</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch-block" style="background:#4A443E;"></div>
+          <div class="color-swatch-info">
+            <div class="color-swatch-name">Ink 800</div>
+            <div class="color-swatch-value">#1E1A16</div>
+            <div class="color-swatch-token">--color-ink-800</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch-block" style="background:#0D0B08;"></div>
+          <div class="color-swatch-info">
+            <div class="color-swatch-name">Ink 900</div>
+            <div class="color-swatch-value">#0D0B08</div>
+            <div class="color-swatch-token">--color-ink-900</div>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="font-size:var(--font-size-sm);font-weight:var(--font-weight-semibold);color:var(--text-secondary);letter-spacing:var(--letter-spacing-wide);text-transform:uppercase;margin-bottom:var(--space-4);">Primitive — Gold Accent</h3>
+      <div class="ds-grid ds-grid-4">
+        <div class="color-swatch">
+          <div class="color-swatch-block" style="background:#FFF8E6;border-bottom:1px solid var(--border-subtle);"></div>
+          <div class="color-swatch-info">
+            <div class="color-swatch-name">Gold 100</div>
+            <div class="color-swatch-value">#FFF8E6</div>
+            <div class="color-swatch-token">--color-gold-100</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch-block" style="background:#F5D98A;"></div>
+          <div class="color-swatch-info">
+            <div class="color-swatch-name">Gold 300</div>
+            <div class="color-swatch-value">#F5D98A</div>
+            <div class="color-swatch-token">--color-gold-300</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch-block" style="background:#D4A843;"></div>
+          <div class="color-swatch-info">
+            <div class="color-swatch-name">Gold 500</div>
+            <div class="color-swatch-value">#D4A843</div>
+            <div class="color-swatch-token">--color-gold-500</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-swatch-block" style="background:#9A7320;"></div>
+          <div class="color-swatch-info">
+            <div class="color-swatch-name">Gold 700</div>
+            <div class="color-swatch-value">#9A7320</div>
+            <div class="color-swatch-token">--color-gold-700</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION: SEMANTIC TOKENS
+         ========================================================= -->
+    <section class="ds-section" id="tokens">
+      <div class="ds-section-header">
+        <div class="ds-section-eyebrow">Foundation · 02</div>
+        <h2 class="ds-section-title">Semantic Tokens</h2>
+        <p class="ds-section-desc">Always reference semantic tokens in components — never raw primitives. Tokens automatically adapt between light and dark modes.</p>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:var(--space-10);">
+        <div>
+          <h3 style="font-size:var(--font-size-sm);font-weight:var(--font-weight-semibold);color:var(--text-secondary);letter-spacing:var(--letter-spacing-wide);text-transform:uppercase;margin-bottom:var(--space-4);">Surface</h3>
+          <table class="token-table">
+            <thead><tr><th>Token</th><th>Light</th><th>Dark</th><th>Usage</th></tr></thead>
+            <tbody>
+              <tr><td>--surface-page</td><td><span class="token-swatch" style="background:#FDFCF8;"></span>#FDFCF8</td><td><span class="token-swatch" style="background:#0D0B08;border-color:#333;"></span>#0D0B08</td><td>Page background</td></tr>
+              <tr><td>--surface-elevated</td><td><span class="token-swatch" style="background:#FFFFFF;"></span>#FFFFFF</td><td><span class="token-swatch" style="background:#1A1612;border-color:#333;"></span>#1A1612</td><td>Cards, modals</td></tr>
+              <tr><td>--surface-subtle</td><td><span class="token-swatch" style="background:#F8F5EE;"></span>#F8F5EE</td><td><span class="token-swatch" style="background:#221E19;border-color:#333;"></span>#221E19</td><td>Hover states</td></tr>
+              <tr><td>--surface-muted</td><td><span class="token-swatch" style="background:#F0EBE0;"></span>#F0EBE0</td><td><span class="token-swatch" style="background:#2E2820;border-color:#333;"></span>#2E2820</td><td>Image placeholders</td></tr>
+              <tr><td>--surface-inverse</td><td><span class="token-swatch" style="background:#0D0B08;"></span>#0D0B08</td><td><span class="token-swatch" style="background:#FDFCF8;border-color:#ccc;"></span>#FDFCF8</td><td>Footer, dark sections</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h3 style="font-size:var(--font-size-sm);font-weight:var(--font-weight-semibold);color:var(--text-secondary);letter-spacing:var(--letter-spacing-wide);text-transform:uppercase;margin-bottom:var(--space-4);">Text</h3>
+          <table class="token-table">
+            <thead><tr><th>Token</th><th>Light</th><th>Dark</th><th>Usage</th></tr></thead>
+            <tbody>
+              <tr><td>--text-primary</td><td><span class="token-swatch" style="background:#0D0B08;"></span>#0D0B08</td><td><span class="token-swatch" style="background:#F5F0E8;border-color:#ccc;"></span>#F5F0E8</td><td>Headlines, body</td></tr>
+              <tr><td>--text-secondary</td><td><span class="token-swatch" style="background:#706860;"></span>#706860</td><td><span class="token-swatch" style="background:#A89F94;border-color:#555;"></span>#A89F94</td><td>Supporting copy</td></tr>
+              <tr><td>--text-tertiary</td><td><span class="token-swatch" style="background:#9E968A;"></span>#9E968A</td><td><span class="token-swatch" style="background:#7A726A;border-color:#555;"></span>#7A726A</td><td>Labels, captions</td></tr>
+              <tr><td>--text-accent</td><td><span class="token-swatch" style="background:#9A7320;"></span>#9A7320</td><td><span class="token-swatch" style="background:#F5D98A;border-color:#ccc;"></span>#F5D98A</td><td>Accent emphasis</td></tr>
+              <tr><td>--text-inverse</td><td><span class="token-swatch" style="background:#FDFCF8;border-color:#ccc;"></span>#FDFCF8</td><td><span class="token-swatch" style="background:#0D0B08;"></span>#0D0B08</td><td>On dark surfaces</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION: TYPOGRAPHY
+         ========================================================= -->
+    <section class="ds-section" id="typography">
+      <div class="ds-section-header">
+        <div class="ds-section-eyebrow">Foundation · 03</div>
+        <h2 class="ds-section-title">Typography</h2>
+        <p class="ds-section-desc">Two typeface roles: a display serif for headlines (with italic used as a signature accent) and a system sans-serif for body and UI text. The scale is named H1–H6 for headings and B1–B3 for body.</p>
+      </div>
+
+      <!-- Font families + download -->
+      <div class="ds-card" style="margin-bottom:var(--space-8);">
+        <div class="ds-flex" style="justify-content:space-between;align-items:flex-start;">
+          <div>
+            <h4 style="font-size:var(--font-size-sm);font-weight:var(--font-weight-semibold);margin-bottom:var(--space-2);">Font families</h4>
+            <p style="font-size:var(--font-size-sm);color:var(--text-secondary);max-width:520px;line-height:var(--line-height-relaxed);">
+              Display: <strong>Georgia</strong> (system) · Body: <strong>system sans</strong> · Mono: <strong>system mono</strong>.
+              All three are preinstalled system defaults, so there are no files to download. If a custom typeface is added,
+              the <em>Download fonts</em> button in the header will list it with a free or paid source.
+            </p>
+          </div>
+          <button class="btn btn-secondary btn-sm" onclick="openFontDownloads()"><i class="ph ph-download-simple"></i> Download fonts</button>
+        </div>
+      </div>
+
+      <!-- Headings: H1–H6 -->
+      <div class="type-meta" style="margin-bottom:var(--space-4);"><span>Headings · Display serif (Georgia)</span></div>
+
+      <div class="type-specimen">
+        <div style="font-family:var(--font-display);font-size:var(--font-size-6xl);font-weight:400;line-height:var(--line-height-tight);letter-spacing:var(--letter-spacing-tight);color:var(--text-primary);"><em>Humanist</em> AI</div>
+        <div class="ds-label">H1 · Display 6xl — 112px / weight 400 / line-height 1.1 / tracking -0.03em — hero headlines</div>
+      </div>
+      <div class="type-specimen">
+        <div style="font-family:var(--font-display);font-size:var(--font-size-5xl);font-weight:400;line-height:var(--line-height-tight);letter-spacing:var(--letter-spacing-tight);">We build <em>technology.</em></div>
+        <div class="ds-label">H2 · Display 5xl — 80px / weight 400 / line-height 1.1 / tracking -0.03em — page titles</div>
+      </div>
+      <div class="type-specimen">
+        <div style="font-family:var(--font-display);font-size:var(--font-size-4xl);font-weight:400;line-height:var(--line-height-tight);letter-spacing:var(--letter-spacing-tight);">Advancing the <em>frontier</em></div>
+        <div class="ds-label">H3 · Display 4xl — 56px / weight 400 / line-height 1.1 / tracking -0.03em — major section heads</div>
+      </div>
+      <div class="type-specimen">
+        <div style="font-family:var(--font-display);font-size:var(--font-size-3xl);font-weight:400;line-height:var(--line-height-snug);letter-spacing:var(--letter-spacing-tight);">Meet the <em>models</em></div>
+        <div class="ds-label">H4 · 3xl — 40px / weight 400 / line-height 1.25 / tracking -0.03em — section titles</div>
+      </div>
+      <div class="type-specimen">
+        <div style="font-family:var(--font-display);font-size:var(--font-size-2xl);font-weight:400;line-height:var(--line-height-snug);">Recent News</div>
+        <div class="ds-label">H5 · 2xl — 32px / weight 400 / line-height 1.25 — subsection titles</div>
+      </div>
+      <div class="type-specimen">
+        <div style="font-family:var(--font-body);font-size:var(--font-size-xl);font-weight:var(--font-weight-semibold);line-height:var(--line-height-snug);">Card &amp; component headings</div>
+        <div class="ds-label">H6 · xl — 24px / weight 600 / line-height 1.25 / body sans — card & UI headings</div>
+      </div>
+
+      <hr class="ds-divider">
+
+      <!-- Body: B1–B3 -->
+      <div class="type-meta" style="margin-bottom:var(--space-4);"><span>Body · System sans-serif</span><span>-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue</span></div>
+
+      <div class="type-specimen">
+        <div style="font-size:var(--font-size-lg);line-height:var(--line-height-relaxed);color:var(--text-secondary);max-width:640px;">At MAI, we're building the world's most capable AI systems, with humanity at the center of every decision.</div>
+        <div class="ds-label">B1 · Body Large — 20px / weight 400 / line-height 1.7 — lead paragraphs, intros</div>
+      </div>
+      <div class="type-specimen">
+        <div style="font-size:var(--font-size-base);line-height:var(--line-height-relaxed);color:var(--text-secondary);max-width:640px;">Humanist superintelligence is advanced AI designed to stay controllable, aligned, and firmly in service to humanity. It's not about outpacing human capability — it's about amplifying it.</div>
+        <div class="ds-label">B2 · Body Base — 16px / weight 400 / line-height 1.7 — default body copy</div>
+      </div>
+      <div class="type-specimen">
+        <div style="font-size:var(--font-size-sm);line-height:var(--line-height-normal);color:var(--text-secondary);">models · 4 min read</div>
+        <div class="ds-label">B3 · Body Small — 14px / weight 400 / line-height 1.5 — captions, card metadata, tags</div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION: SPACING
+         ========================================================= -->
+    <section class="ds-section" id="spacing">
+      <div class="ds-section-header">
+        <div class="ds-section-eyebrow">Foundation · 04</div>
+        <h2 class="ds-section-title">Spacing</h2>
+        <p class="ds-section-desc">4px base unit. All spacing values are multiples of 4. Use semantic spacing for consistent, harmonious layouts.</p>
+      </div>
+      <div>
+        <div class="space-row"><div class="space-bar" style="width:4px;"></div><div class="space-info">space-1 · 4px · --space-1</div></div>
+        <div class="space-row"><div class="space-bar" style="width:8px;"></div><div class="space-info">space-2 · 8px · --space-2</div></div>
+        <div class="space-row"><div class="space-bar" style="width:12px;"></div><div class="space-info">space-3 · 12px · --space-3</div></div>
+        <div class="space-row"><div class="space-bar" style="width:16px;"></div><div class="space-info">space-4 · 16px · --space-4</div></div>
+        <div class="space-row"><div class="space-bar" style="width:20px;"></div><div class="space-info">space-5 · 20px · --space-5</div></div>
+        <div class="space-row"><div class="space-bar" style="width:24px;"></div><div class="space-info">space-6 · 24px · --space-6</div></div>
+        <div class="space-row"><div class="space-bar" style="width:32px;"></div><div class="space-info">space-8 · 32px · --space-8</div></div>
+        <div class="space-row"><div class="space-bar" style="width:40px;"></div><div class="space-info">space-10 · 40px · --space-10</div></div>
+        <div class="space-row"><div class="space-bar" style="width:48px;"></div><div class="space-info">space-12 · 48px · --space-12</div></div>
+        <div class="space-row"><div class="space-bar" style="width:64px;"></div><div class="space-info">space-16 · 64px · --space-16 · Section padding Y</div></div>
+        <div class="space-row"><div class="space-bar" style="width:80px;"></div><div class="space-info">space-20 · 80px · --space-20 · Hero padding</div></div>
+        <div class="space-row"><div class="space-bar" style="width:96px;"></div><div class="space-info">space-24 · 96px · --space-24</div></div>
+        <div class="space-row"><div class="space-bar" style="width:128px;"></div><div class="space-info">space-32 · 128px · --space-32 · Max vertical breathing room</div></div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION: MOTION
+         ========================================================= -->
+    <section class="ds-section" id="motion">
+      <div class="ds-section-header">
+        <div class="ds-section-eyebrow">Foundation · 05</div>
+        <h2 class="ds-section-title">Motion</h2>
+        <p class="ds-section-desc">MAI motion is editorial and intentional — slow, deliberate reveals that feel human. Interactions are fast and responsive. Marquee and scroll-linked animations are signature patterns.</p>
+      </div>
+
+      <div class="ds-grid ds-grid-2" style="margin-bottom:var(--space-8);">
+        <div class="ds-card">
+          <h4 style="font-size:var(--font-size-sm);font-weight:var(--font-weight-semibold);margin-bottom:var(--space-4);">Duration Scale</h4>
+          <table class="token-table">
+            <thead><tr><th>Token</th><th>Value</th><th>Usage</th></tr></thead>
+            <tbody>
+              <tr><td>--duration-instant</td><td>50ms</td><td>Micro-feedback (toggle)</td></tr>
+              <tr><td>--duration-fast</td><td>150ms</td><td>Hover, focus states</td></tr>
+              <tr><td>--duration-normal</td><td>250ms</td><td>Most transitions</td></tr>
+              <tr><td>--duration-slow</td><td>400ms</td><td>Panel slide, card lift</td></tr>
+              <tr><td>--duration-slower</td><td>600ms</td><td>Page transitions</td></tr>
+              <tr><td>--duration-slowest</td><td>1000ms</td><td>Hero text reveals</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="ds-card">
+          <h4 style="font-size:var(--font-size-sm);font-weight:var(--font-weight-semibold);margin-bottom:var(--space-2);">Easing Curves</h4>
+          <p style="font-size:var(--font-size-xs);color:var(--text-tertiary);margin-bottom:var(--space-4);">Hover any row to preview: the dot travels the track with that curve (pausing briefly at each end), and the plotted bézier shows its shape.</p>
+          <div class="ease-list">
+            <div class="ease-row" tabindex="0" style="--bz:cubic-bezier(0.4,0,0.2,1);">
+              <div class="ease-spec"><span class="ease-intent">Standard</span><span class="ease-token">--ease-default · cubic-bezier(0.4, 0, 0.2, 1)</span></div>
+              <div class="ease-demo"><svg class="ease-curve" viewBox="0 0 40 40" aria-hidden="true"><path d="M0,40 C16,40 8,0 40,0"/></svg><div class="ease-track"><span class="ease-dot"></span></div></div>
+            </div>
+            <div class="ease-row" tabindex="0" style="--bz:cubic-bezier(0,0,0.2,1);">
+              <div class="ease-spec"><span class="ease-intent">Enter <span class="ease-tag">decelerate</span></span><span class="ease-token">--ease-out · cubic-bezier(0, 0, 0.2, 1)</span></div>
+              <div class="ease-demo"><svg class="ease-curve" viewBox="0 0 40 40" aria-hidden="true"><path d="M0,40 C0,40 8,0 40,0"/></svg><div class="ease-track"><span class="ease-dot"></span></div></div>
+            </div>
+            <div class="ease-row" tabindex="0" style="--bz:cubic-bezier(0.4,0,1,1);">
+              <div class="ease-spec"><span class="ease-intent">Exit <span class="ease-tag">accelerate</span></span><span class="ease-token">--ease-in · cubic-bezier(0.4, 0, 1, 1)</span></div>
+              <div class="ease-demo"><svg class="ease-curve" viewBox="0 0 40 40" aria-hidden="true"><path d="M0,40 C16,40 40,0 40,0"/></svg><div class="ease-track"><span class="ease-dot"></span></div></div>
+            </div>
+            <div class="ease-row" tabindex="0" style="--bz:cubic-bezier(0.34,1.56,0.64,1);">
+              <div class="ease-spec"><span class="ease-intent">Emphasized <span class="ease-tag">spring</span></span><span class="ease-token">--ease-spring · cubic-bezier(0.34, 1.56, 0.64, 1)</span></div>
+              <div class="ease-demo"><svg class="ease-curve" viewBox="0 0 40 48" aria-hidden="true"><path d="M0,48 C13.6,-14.4 25.6,0 40,8"/></svg><div class="ease-track"><span class="ease-dot"></span></div></div>
+            </div>
+            <div class="ease-row" tabindex="0" style="--bz:cubic-bezier(0.25,0.1,0,1);">
+              <div class="ease-spec"><span class="ease-intent">Editorial <span class="ease-tag">reveal</span></span><span class="ease-token">--ease-editorial · cubic-bezier(0.25, 0.1, 0, 1)</span></div>
+              <div class="ease-demo"><svg class="ease-curve" viewBox="0 0 40 40" aria-hidden="true"><path d="M0,40 C10,36 0,0 40,0"/></svg><div class="ease-track"><span class="ease-dot"></span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-card">
+        <h4 style="font-size:var(--font-size-sm);font-weight:var(--font-weight-semibold);margin-bottom:var(--space-4);">Motion Principles</h4>
+        <div class="ds-grid ds-grid-3" style="gap:var(--space-6);">
+          <div>
+            <div style="font-size:var(--font-size-base);font-weight:var(--font-weight-semibold);margin-bottom:var(--space-2);">Editorial Reveals</div>
+            <div style="font-size:var(--font-size-sm);color:var(--text-secondary);line-height:var(--line-height-relaxed);">Hero headlines animate on load with a slow upward fade (opacity 0→1, translateY 20px→0) over 1000ms with ease-editorial. Italic words may animate slightly after the roman weight.</div>
+          </div>
+          <div>
+            <div style="font-size:var(--font-size-base);font-weight:var(--font-weight-semibold);margin-bottom:var(--space-2);">Scroll-Linked</div>
+            <div style="font-size:var(--font-size-sm);color:var(--text-secondary);line-height:var(--line-height-relaxed);">Section headlines and image-text pairs stagger in as they enter viewport. Each staggered child delays by 80ms. Use IntersectionObserver with threshold 0.15.</div>
+          </div>
+          <div>
+            <div style="font-size:var(--font-size-base);font-weight:var(--font-weight-semibold);margin-bottom:var(--space-2);">Continuous Ticker</div>
+            <div style="font-size:var(--font-size-sm);color:var(--text-secondary);line-height:var(--line-height-relaxed);">The marquee pattern repeats brand phrases at 18s/cycle. Always pause on hover (animation-play-state: paused) and respect prefers-reduced-motion.</div>
+          </div>
+          <div>
+            <div style="font-size:var(--font-size-base);font-weight:var(--font-weight-semibold);margin-bottom:var(--space-2);">Card Lift</div>
+            <div style="font-size:var(--font-size-sm);color:var(--text-secondary);line-height:var(--line-height-relaxed);">Cards translate -4px Y with box-shadow elevation on hover. Duration 250ms ease-out. Never scale cards — translate only.</div>
+          </div>
+          <div>
+            <div style="font-size:var(--font-size-base);font-weight:var(--font-weight-semibold);margin-bottom:var(--space-2);">Ghost Button Arrow</div>
+            <div style="font-size:var(--font-size-sm);color:var(--text-secondary);line-height:var(--line-height-relaxed);">The trailing → on ghost CTAs translates +4px X on hover over 150ms. Communicates directionality with restraint.</div>
+          </div>
+          <div>
+            <div style="font-size:var(--font-size-base);font-weight:var(--font-weight-semibold);margin-bottom:var(--space-2);">Reduced Motion</div>
+            <div style="font-size:var(--font-size-sm);color:var(--text-secondary);line-height:var(--line-height-relaxed);">All animations and transitions collapse to 0.01ms when prefers-reduced-motion: reduce is set. Marquee stops completely.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION: ICONOGRAPHY
+         ========================================================= -->
+    <section class="ds-section" id="iconography">
+      <div class="ds-section-header">
+        <div class="ds-section-eyebrow">Foundation · 06</div>
+        <h2 class="ds-section-title">Iconography</h2>
+        <p class="ds-section-desc">MAI uses minimal inline SVG icons and abstract SVG illustrations. Icons are single-weight line style at 20px/24px. Illustrations are soft, generative abstract patterns — not flat icon sets.</p>
+      </div>
+
+      <!-- Icon source + download -->
+      <div class="ds-card" style="margin-bottom:var(--space-8);">
+        <div class="ds-flex" style="justify-content:space-between;align-items:flex-start;">
+          <div>
+            <div class="ds-flex" style="gap:var(--space-2);margin-bottom:var(--space-2);">
+              <span class="asset-badge free">Open source</span>
+              <h4 style="font-size:var(--font-size-sm);font-weight:var(--font-weight-semibold);">Source: Phosphor Icons</h4>
+            </div>
+            <p style="font-size:var(--font-size-sm);color:var(--text-secondary);max-width:560px;line-height:var(--line-height-relaxed);">
+              <strong>Phosphor</strong> (MIT licensed) is the closest open-source match to MAI's existing in-house glyphs —
+              thin single-weight strokes with rounded caps and joins at 1.5px. Where a system's house style fits another
+              free library better (e.g. Lucide, Tabler, Material Symbols), use that; if the best fit is paid or unavailable,
+              degrade to Material Symbols as the open-source default. Brand glyphs below are custom in-house SVGs — request
+              their source files from the design system admin.
+            </p>
+          </div>
+          <div class="ds-flex" style="gap:var(--space-2);">
+            <a class="btn btn-primary btn-sm" href="https://phosphoricons.com/" target="_blank" rel="noopener"><i class="ph ph-download-simple"></i> Download Phosphor</a>
+            <button class="btn btn-secondary btn-sm" onclick="requestIcons()"><i class="ph ph-envelope-simple"></i> Request brand glyphs</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-grid ds-grid-4">
+        <div class="ds-card" style="text-align:center;">
+          <div style="margin-bottom:var(--space-3);display:flex;justify-content:center;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+          </div>
+          <div class="ds-label" style="margin:0;">Model / Intelligence</div>
+        </div>
+        <div class="ds-card" style="text-align:center;">
+          <div style="margin-bottom:var(--space-3);display:flex;justify-content:center;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <div class="ds-label" style="margin:0;">Time / Read time</div>
+        </div>
+        <div class="ds-card" style="text-align:center;">
+          <div style="margin-bottom:var(--space-3);display:flex;justify-content:center;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="ds-label" style="margin:0;">Team / People</div>
+        </div>
+        <div class="ds-card" style="text-align:center;">
+          <div style="margin-bottom:var(--space-3);display:flex;justify-content:center;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div class="ds-label" style="margin:0;">Microphone / Voice</div>
+        </div>
+        <div class="ds-card" style="text-align:center;">
+          <div style="margin-bottom:var(--space-3);display:flex;justify-content:center;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <div class="ds-label" style="margin:0;">Image / Grid</div>
+        </div>
+        <div class="ds-card" style="text-align:center;">
+          <div style="margin-bottom:var(--space-3);display:flex;justify-content:center;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div class="ds-label" style="margin:0;">Safety / Quality</div>
+        </div>
+        <div class="ds-card" style="text-align:center;">
+          <div style="margin-bottom:var(--space-3);display:flex;justify-content:center;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+          <div class="ds-label" style="margin:0;">Arrow / Navigation</div>
+        </div>
+        <div class="ds-card" style="text-align:center;">
+          <div style="margin-bottom:var(--space-3);display:flex;justify-content:center;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          </div>
+          <div class="ds-label" style="margin:0;">Search</div>
+        </div>
+      </div>
+      <div class="ds-card" style="margin-top:var(--space-6);">
+        <p style="font-size:var(--font-size-sm);color:var(--text-secondary);line-height:var(--line-height-relaxed);"><strong>Icon Spec:</strong> 20×20px (UI contexts) / 24×24px (standalone). stroke-width: 1.5px. stroke-linecap: round. stroke-linejoin: round. Fill: none. Color: currentColor. Always pair with a visible text label or aria-label. Abstract SVG illustrations (model cards, news thumbnails) are soft generative patterns — pale, low-contrast, and non-representational.</p>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION: SHADOWS & HIGHLIGHTS
+         ========================================================= -->
+    <section class="ds-section" id="shadows">
+      <div class="ds-section-header">
+        <div class="ds-section-eyebrow">Foundation · 07</div>
+        <h2 class="ds-section-title">Shadows &amp; Highlights</h2>
+        <p class="ds-section-desc">Elevation expressed through soft, low-contrast shadows. MAI keeps elevation restrained — shadows imply layering, never drama.</p>
+      </div>
+
+      <h3 style="font-size:var(--font-size-sm);font-weight:var(--font-weight-semibold);color:var(--text-secondary);letter-spacing:var(--letter-spacing-wide);text-transform:uppercase;margin-bottom:var(--space-6);">Elevation / Shadows</h3>
+      <div class="elevation-grid" style="margin-bottom:var(--space-10);">
+        <div class="elevation-card" style="box-shadow:var(--shadow-sm);">
+          <div class="ds-label" style="margin:0;">--shadow-sm · subtle lift (cards, inputs)</div>
+        </div>
+        <div class="elevation-card" style="box-shadow:var(--shadow-md);">
+          <div class="ds-label" style="margin:0;">--shadow-md · raised (hover, buttons)</div>
+        </div>
+        <div class="elevation-card" style="box-shadow:var(--shadow-lg);">
+          <div class="ds-label" style="margin:0;">--shadow-lg · floating (popovers, lifted cards)</div>
+        </div>
+        <div class="elevation-card" style="box-shadow:var(--shadow-xl);">
+          <div class="ds-label" style="margin:0;">--shadow-xl · overlay (modals, dialogs)</div>
+        </div>
+      </div>
+
+      <h3 style="font-size:var(--font-size-sm);font-weight:var(--font-weight-semibold);color:var(--text-secondary);letter-spacing:var(--letter-spacing-wide);text-transform:uppercase;margin-bottom:var(--space-3);">Highlights / Glows</h3>
+      <p style="font-size:var(--font-size-sm);color:var(--text-secondary);max-width:640px;line-height:var(--line-height-relaxed);margin-bottom:var(--space-6);">
+        Highlights are the <strong>inverse of shadows</strong>: in light mode, depth reads as a soft cast shadow below an element;
+        in <strong>dark mode</strong>, cast shadows nearly disappear, so elevation is carried by a faint <em>top highlight</em> where
+        light catches the upper edge. Toggle dark mode (top right) to see the effect. Glows are reserved for focus and accent emphasis.
+      </p>
+      <div class="elevation-grid">
+        <div class="elevation-card" style="box-shadow:var(--highlight-top), var(--shadow-sm);">
+          <div class="ds-label" style="margin:0;">--highlight-top · top-edge elevation (reads in dark mode)</div>
+        </div>
+        <div class="elevation-card" style="box-shadow:var(--highlight-focus);">
+          <div class="ds-label" style="margin:0;">--highlight-focus · focus ring / selected state</div>
+        </div>
+        <div class="elevation-card" style="box-shadow:var(--highlight-accent);">
+          <div class="ds-label" style="margin:0;">--highlight-accent · gold glow for emphasis moments</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION: PHOTOGRAPHY & IMAGERY
+         ========================================================= -->
+    <section class="ds-section" id="photography">
+      <div class="ds-section-header">
+        <div class="ds-section-eyebrow">Foundation · 08</div>
+        <h2 class="ds-section-title">Photography & Imagery</h2>
+        <p class="ds-section-desc">MAI uses imagery that feels human first — warm, candid, and unguarded. Photography of people anchors the brand in real life. Abstract SVG and generative art handle technical and model-related concepts.</p>
+      </div>
+
+      <!-- Imagery Types -->
+      <h3 style="font-size:var(--font-size-sm);font-weight:var(--font-weight-semibold);color:var(--text-secondary);letter-spacing:var(--letter-spacing-wide);text-transform:uppercase;margin-bottom:var(--space-4);">Imagery Types</h3>
+      <div class="ds-grid ds-grid-3" style="margin-bottom:var(--space-10);">
+
+        <div class="ds-card">
+          <div style="width:100%;aspect-ratio:4/3;border-radius:var(--radius-md);background:linear-gradient(135deg,#e8e0d4 0%,#d4c9b8 100%);margin-bottom:var(--space-4);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(13,11,8,0.35) 100%);"></div>
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="opacity:0.3;"><circle cx="24" cy="20" r="10" stroke="#706860" stroke-width="1.5"/><path d="M8 40c0-8.837 7.163-16 16-16s16 7.163 16 16" stroke="#706860" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div style="font-size:var(--font-size-base);font-weight:var(--font-weight-semibold);color:var(--text-primary);margin-bottom:var(--space-2);">People Photography</div>
+          <div style="font-size:var(--font-size-sm);color:var(--text-secondary);line-height:var(--line-height-relaxed);">Candid moments of real people in natural environments — conversations, gestures, outdoor settings. Warm ambient light. Never stock-photo stiff. Used in hero, team, and section splits.</div>
+        </div>
+
+        <div class="ds-card">
+          <div style="width:100%;aspect-ratio:4/3;border-radius:var(--radius-md);background:linear-gradient(135deg,#f0ebe0 0%,#e4ddd0 100%);margin-bottom:var(--space-4);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+            <svg width="64" height="40" viewBox="0 0 64 40" fill="none" style="opacity:0.25;"><path d="M2 38 C10 20, 20 30, 32 18 S 50 8, 62 20" stroke="#706860" stroke-width="1.5" stroke-linecap="round" fill="none"/><circle cx="14" cy="12" r="3" stroke="#706860" stroke-width="1.5"/><circle cx="32" cy="24" r="2" stroke="#706860" stroke-width="1.5"/><circle cx="50" cy="10" r="4" stroke="#706860" stroke-width="1.5"/></svg>
+          </div>
+          <div style="font-size:var(--font-size-base);font-weight:var(--font-weight-semibold);color:var(--text-primary);margin-bottom:var(--space-2);">Abstract / Generative SVG</div>
+          <div style="font-size:var(--font-size-sm);color:var(--text-secondary);line-height:var(--line-height-relaxed);">Pale, low-contrast SVG patterns — sound waves, diagonal lines, soft radial shapes. Used exclusively as model card backgrounds and decorative overlays. Never busy or high-contrast.</div>
+        </div>
+
+        <div class="ds-card">
+          <div style="width:100%;aspect-ratio:4/3;border-radius:var(--radius-md);overflow:hidden;margin-bottom:var(--space-4);display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:2px;background:#ccc;">
+            <div style="background:#e8dcc8;"></div>
+            <div style="background:#d4c4a8;"></div>
+            <div style="background:#c8b898;"></div>
+            <div style="background:#dcd0b8;"></div>
+            <div style="background:#e4d8c0;grid-column:span 2;"></div>
+          </div>
+          <div style="font-size:var(--font-size-base);font-weight:var(--font-weight-semibold);color:var(--text-primary);margin-bottom:var(--space-2);">Photo Collage</div>
+          <div style="font-size:var(--font-size-sm);color:var(--text-secondary);line-height:var(--line-height-relaxed);">Grid of 6–9 square photos on a beige background connected by thin lines. Used for news thumbnails about multi-subject topics. Feels editorial and curated, not random.</div>
+        </div>
+
+        <div class="ds-card">
+          <div style="width:100%;aspect-ratio:4/3;border-radius:var(--radius-md);background:linear-gradient(160deg,#c8dce8 0%,#e0d4c4 40%,#d8c4a0 100%);margin-bottom:var(--space-4);display:flex;align-items:center;justify-content:center;">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="opacity:0.3;"><path d="M6 42 C14 28, 22 34, 30 20 S 42 10, 48 22" stroke="#706860" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M2 32 C8 24, 16 30, 24 18 S 38 8, 46 16" stroke="#9E968A" stroke-width="1" stroke-linecap="round" fill="none" stroke-dasharray="2 4"/></svg>
+          </div>
+          <div style="font-size:var(--font-size-base);font-weight:var(--font-weight-semibold);color:var(--text-primary);margin-bottom:var(--space-2);">Painterly Illustration</div>
+          <div style="font-size:var(--font-size-sm);color:var(--text-secondary);line-height:var(--line-height-relaxed);">Colorful, warm AI-generated cityscapes and park scenes. Used exclusively for office location cards. Loose, impressionist style — vibrant but never garish. Consistent warm palette.</div>
+        </div>
+
+        <div class="ds-card">
+          <div style="width:100%;aspect-ratio:4/3;border-radius:var(--radius-md);background:linear-gradient(135deg,#1a160e 0%,#2e2416 100%);margin-bottom:var(--space-4);display:flex;align-items:center;justify-content:center;">
+            <svg width="52" height="32" viewBox="0 0 52 32" fill="none" style="opacity:0.4;"><rect x="2" y="8" width="3" height="16" rx="1.5" fill="#D4A843"/><rect x="8" y="4" width="3" height="24" rx="1.5" fill="#D4A843"/><rect x="14" y="2" width="3" height="28" rx="1.5" fill="#D4A843"/><rect x="20" y="6" width="3" height="20" rx="1.5" fill="#D4A843"/><rect x="26" y="10" width="3" height="12" rx="1.5" fill="#D4A843"/><rect x="32" y="3" width="3" height="26" rx="1.5" fill="#D4A843"/><rect x="38" y="7" width="3" height="18" rx="1.5" fill="#D4A843"/><rect x="44" y="5" width="3" height="22" rx="1.5" fill="#D4A843"/></svg>
+          </div>
+          <div style="font-size:var(--font-size-base);font-weight:var(--font-weight-semibold);color:var(--text-primary);margin-bottom:var(--space-2);">Technical / Data Art</div>
+          <div style="font-size:var(--font-size-sm);color:var(--text-secondary);line-height:var(--line-height-relaxed);">Abstract waveform and graph-like imagery for audio/transcription content. Dark background with gold or white line art. Used for MAI-Transcribe-1 and MAI-Voice-1 news thumbnails.</div>
+        </div>
+
+        <div class="ds-card">
+          <div style="width:100%;aspect-ratio:4/3;border-radius:var(--radius-md);overflow:hidden;margin-bottom:var(--space-4);position:relative;background:linear-gradient(135deg,#b8cce0 0%,#d4e4c8 50%,#e8d4b8 100%);">
+            <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(180deg,transparent 0%,rgba(13,11,8,0.5) 100%);padding:var(--space-4);">
+              <div style="font-size:var(--font-size-xs);color:rgba(255,255,255,0.9);font-family:var(--font-body);">Product screenshot overlay</div>
+            </div>
+          </div>
+          <div style="font-size:var(--font-size-base);font-weight:var(--font-weight-semibold);color:var(--text-primary);margin-bottom:var(--space-2);">Product Screenshot</div>
+          <div style="font-size:var(--font-size-sm);color:var(--text-secondary);line-height:var(--line-height-relaxed);">Product UI screenshots overlaid on blurred nature photography. Used for Copilot, Bing, Edge product cards. Scenic background softened to 40% opacity blur; UI sharp on top.</div>
+        </div>
+
+      </div>
+
+      <!-- Color Treatment -->
+      <h3 style="font-size:var(--font-size-sm);font-weight:var(--font-weight-semibold);color:var(--text-secondary);letter-spacing:var(--letter-spacing-wide);text-transform:uppercase;margin-bottom:var(--space-4);">Color Treatment</h3>
+      <div class="ds-grid ds-grid-2" style="margin-bottom:var(--space-10);">
+        <div class="ds-card">
+          <div style="font-size:var(--font-size-base);font-weight:var(--font-weight-semibold);margin-bottom:var(--space-4);">People & Lifestyle Photos</div>
+          <div style="display:flex;gap:var(--space-3);margin-bottom:var(--space-4);">
+            <div style="flex:1;height:48px;border-radius:var(--radius-sm);background:linear-gradient(90deg,#e8c89a,#d4a870);"></div>
+            <div style="flex:1;height:48px;border-radius:var(--radius-sm);background:linear-gradient(90deg,#c8b898,#a89878);"></div>
+            <div style="flex:1;height:48px;border-radius:var(--radius-sm);background:linear-gradient(90deg,#f0e4d0,#e0d0b8);"></div>
+          </div>
+          <ul style="font-size:var(--font-size-sm);color:var(--text-secondary);line-height:var(--line-height-relaxed);list-style:none;display:flex;flex-direction:column;gap:var(--space-2);">
+            <li>→ Warm color temperature (5500–6500K). No cool blue tones.</li>
+            <li>→ Natural, slightly lifted shadows — never crushed blacks in skin tones.</li>
+            <li>→ Gentle highlight roll-off. Avoid blown-out backgrounds.</li>
+            <li>→ Saturation: moderate. Colors are present but not punchy.</li>
+            <li>→ No heavy filters, presets, or stylized color grades.</li>
+          </ul>
+        </div>
+        <div class="ds-card">
+          <div style="font-size:var(--font-size-base);font-weight:var(--font-weight-semibold);margin-bottom:var(--space-4);">Illustrations & Abstract Art</div>
+          <div style="display:flex;gap:var(--space-3);margin-bottom:var(--space-4);">
+            <div style="flex:1;height:48px;border-radius:var(--radius-sm);background:linear-gradient(90deg,#f5d98a,#e8c870);"></div>
+            <div style="flex:1;height:48px;border-radius:var(--radius-sm);background:linear-gradient(90deg,#a8c8d8,#88a8c0);"></div>
+            <div style="flex:1;height:48px;border-radius:var(--radius-sm);background:linear-gradient(90deg,#c8d8a8,#a8c088);"></div>
+          </div>
+          <ul style="font-size:var(--font-size-sm);color:var(--text-secondary);line-height:var(--line-height-relaxed);list-style:none;display:flex;flex-direction:column;gap:var(--space-2);">
+            <li>→ Painterly illustrations: high saturation, vibrant primaries, impressionist looseness.</li>
+            <li>→ Abstract SVGs: pale cream/white on near-white. Near-invisible, texture only.</li>
+            <li>→ Beige (#F5F0E8) is the universal background for collage imagery.</li>
+            <li>→ Dark technical art: ink-black background, gold or white line art only.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Aspect Ratios -->
+      <h3 style="font-size:var(--font-size-sm);font-weight:var(--font-weight-semibold);color:var(--text-secondary);letter-spacing:var(--letter-spacing-wide);text-transform:uppercase;margin-bottom:var(--space-4);">Aspect Ratios by Context</h3>
+      <div class="ds-grid ds-grid-4" style="margin-bottom:var(--space-10);">
+        <div class="ds-card" style="text-align:center;">
+          <div style="width:100%;aspect-ratio:16/9;background:var(--surface-muted);border-radius:var(--radius-md);margin-bottom:var(--space-3);display:flex;align-items:center;justify-content:center;color:var(--text-tertiary);font-family:var(--font-mono);font-size:var(--font-size-xs);">16:9</div>
+          <div style="font-size:var(--font-size-sm);font-weight:var(--font-weight-medium);">News Cards</div>
+          <div style="font-size:var(--font-size-xs);color:var(--text-tertiary);margin-top:var(--space-1);">News thumbnails, blog headers</div>
+        </div>
+        <div class="ds-card" style="text-align:center;">
+          <div style="width:100%;aspect-ratio:4/3;background:var(--surface-muted);border-radius:var(--radius-md);margin-bottom:var(--space-3);display:flex;align-items:center;justify-content:center;color:var(--text-tertiary);font-family:var(--font-mono);font-size:var(--font-size-xs);">4:3</div>
+          <div style="font-size:var(--font-size-sm);font-weight:var(--font-weight-medium);">Section Split</div>
+          <div style="font-size:var(--font-size-xs);color:var(--text-tertiary);margin-top:var(--space-1);">Image-text split sections</div>
+        </div>
+        <div class="ds-card" style="text-align:center;">
+          <div style="width:100%;aspect-ratio:3/2;background:var(--surface-muted);border-radius:var(--radius-md);margin-bottom:var(--space-3);display:flex;align-items:center;justify-content:center;color:var(--text-tertiary);font-family:var(--font-mono);font-size:var(--font-size-xs);">3:2</div>
+          <div style="font-size:var(--font-size-sm);font-weight:var(--font-weight-medium);">Location Cards</div>
+          <div style="font-size:var(--font-size-xs);color:var(--text-tertiary);margin-top:var(--space-1);">Office location illustrations</div>
+        </div>
+        <div class="ds-card" style="text-align:center;">
+          <div style="width:100%;aspect-ratio:3/4;background:var(--surface-muted);border-radius:var(--radius-md);margin-bottom:var(--space-3);display:flex;align-items:center;justify-content:center;color:var(--text-tertiary);font-family:var(--font-mono);font-size:var(--font-size-xs);">3:4</div>
+          <div style="font-size:var(--font-size-sm);font-weight:var(--font-weight-medium);">People / Portrait</div>
+          <div style="font-size:var(--font-size-xs);color:var(--text-tertiary);margin-top:var(--space-1);">CEO, team member photos</div>
+        </div>
+      </div>
+
+      <!-- People Photography Principles -->
+      <h3 style="font-size:var(--font-size-sm);font-weight:var(--font-weight-semibold);color:var(--text-secondary);letter-spacing:var(--letter-spacing-wide);text-transform:uppercase;margin-bottom:var(--space-4);">People Photography Principles</h3>
+      <div class="ds-grid ds-grid-2" style="margin-bottom:var(--space-10);">
+        <div class="ds-card">
+          <div style="font-size:var(--font-size-base);font-weight:var(--font-weight-semibold);color:var(--color-green-500);margin-bottom:var(--space-4);">✓ Do</div>
+          <ul style="font-size:var(--font-size-sm);color:var(--text-secondary);line-height:var(--line-height-relaxed);list-style:none;display:flex;flex-direction:column;gap:var(--space-3);">
+            <li style="display:flex;gap:var(--space-2);"><span style="color:var(--color-green-500);flex-shrink:0;">✓</span> Candid, in-the-moment shots — people mid-gesture, mid-laugh, mid-thought.</li>
+            <li style="display:flex;gap:var(--space-2);"><span style="color:var(--color-green-500);flex-shrink:0;">✓</span> Diverse representation across age, ethnicity, gender, and ability.</li>
+            <li style="display:flex;gap:var(--space-2);"><span style="color:var(--color-green-500);flex-shrink:0;">✓</span> Natural environments — offices, outdoors, urban settings with authentic context.</li>
+            <li style="display:flex;gap:var(--space-2);"><span style="color:var(--color-green-500);flex-shrink:0;">✓</span> Warm natural or diffused light — sunlight through windows, outdoor ambient.</li>
+            <li style="display:flex;gap:var(--space-2);"><span style="color:var(--color-green-500);flex-shrink:0;">✓</span> Shallow depth of field with soft, blurred backgrounds (f/1.8–2.8).</li>
+            <li style="display:flex;gap:var(--space-2);"><span style="color:var(--color-green-500);flex-shrink:0;">✓</span> Eye contact with the camera or natural off-camera glances — both work.</li>
+            <li style="display:flex;gap:var(--space-2);"><span style="color:var(--color-green-500);flex-shrink:0;">✓</span> Emotional warmth — joy, curiosity, focus, connection.</li>
+          </ul>
+        </div>
+        <div class="ds-card">
+          <div style="font-size:var(--font-size-base);font-weight:var(--font-weight-semibold);color:var(--feedback-error);margin-bottom:var(--space-4);">✗ Don't</div>
+          <ul style="font-size:var(--font-size-sm);color:var(--text-secondary);line-height:var(--line-height-relaxed);list-style:none;display:flex;flex-direction:column;gap:var(--space-3);">
+            <li style="display:flex;gap:var(--space-2);"><span style="color:var(--feedback-error);flex-shrink:0;">✗</span> Stiff, posed corporate headshots against plain white backgrounds.</li>
+            <li style="display:flex;gap:var(--space-2);"><span style="color:var(--feedback-error);flex-shrink:0;">✗</span> Overly retouched skin — maintain natural texture and authenticity.</li>
+            <li style="display:flex;gap:var(--space-2);"><span style="color:var(--feedback-error);flex-shrink:0;">✗</span> Cool blue or desaturated color grades — off-brand and cold in tone.</li>
+            <li style="display:flex;gap:var(--space-2);"><span style="color:var(--feedback-error);flex-shrink:0;">✗</span> Clichéd tech tropes — pointing at whiteboards, handshakes, laptop-in-café.</li>
+            <li style="display:flex;gap:var(--space-2);"><span style="color:var(--feedback-error);flex-shrink:0;">✗</span> High-contrast dramatic lighting — this brand is warm, not cinematic.</li>
+            <li style="display:flex;gap:var(--space-2);"><span style="color:var(--feedback-error);flex-shrink:0;">✗</span> Stock photos with forced smiles or overly staged "diversity" setups.</li>
+            <li style="display:flex;gap:var(--space-2);"><span style="color:var(--feedback-error);flex-shrink:0;">✗</span> Overlaid text directly on faces or obscuring the subject.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Photography + Illustration Coexistence -->
+      <h3 style="font-size:var(--font-size-sm);font-weight:var(--font-weight-semibold);color:var(--text-secondary);letter-spacing:var(--letter-spacing-wide);text-transform:uppercase;margin-bottom:var(--space-4);">When to Use Photography vs. Illustration</h3>
+      <div class="ds-card">
+        <table class="token-table">
+          <thead>
+            <tr>
+              <th>Context</th>
+              <th>Type</th>
+              <th>Rationale</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Hero / homepage sections</td>
+              <td style="color:var(--text-primary);font-family:var(--font-body);">Real photography</td>
+              <td style="color:var(--text-secondary);font-family:var(--font-body);">Humanizes the brand; people = mission made visible</td>
+            </tr>
+            <tr>
+              <td>Team profiles ("Life at MAI")</td>
+              <td style="color:var(--text-primary);font-family:var(--font-body);">Real photography</td>
+              <td style="color:var(--text-secondary);font-family:var(--font-body);">Authenticity is critical; no illustration substitutes</td>
+            </tr>
+            <tr>
+              <td>News / blog thumbnails</td>
+              <td style="color:var(--text-primary);font-family:var(--font-body);">Photography or collage</td>
+              <td style="color:var(--text-secondary);font-family:var(--font-body);">Subject-dependent; abstract for technical topics</td>
+            </tr>
+            <tr>
+              <td>Office / location cards</td>
+              <td style="color:var(--text-primary);font-family:var(--font-body);">Painterly illustration</td>
+              <td style="color:var(--text-secondary);font-family:var(--font-body);">Consistent, ownable visual style across 8 global cities</td>
+            </tr>
+            <tr>
+              <td>Model cards (MAI-Voice, MAI-Image)</td>
+              <td style="color:var(--text-primary);font-family:var(--font-body);">Abstract SVG</td>
+              <td style="color:var(--text-secondary);font-family:var(--font-body);">Texture without distraction; models are the hero</td>
+            </tr>
+            <tr>
+              <td>Audio / transcription content</td>
+              <td style="color:var(--text-primary);font-family:var(--font-body);">Technical data art</td>
+              <td style="color:var(--text-secondary);font-family:var(--font-body);">Waveform and graph shapes signal technical depth</td>
+            </tr>
+            <tr>
+              <td>Product showcase (Copilot, Bing)</td>
+              <td style="color:var(--text-primary);font-family:var(--font-body);">Screenshot + nature photo</td>
+              <td style="color:var(--text-secondary);font-family:var(--font-body);">Grounds UI in the real world; nature = warmth + aspiration</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION: BUTTONS
+         ========================================================= -->
+    <section class="ds-section" id="buttons">
+      <div class="ds-section-header">
+        <div class="ds-section-eyebrow">Components · 01</div>
+        <h2 class="ds-section-title">Buttons</h2>
+
+        <p class="ds-section-desc">Three button variants. All use pill border-radius. Ghost buttons are the primary CTA style for navigation — directional arrows are a signature detail.</p>
+      </div>
+
+      <div class="ds-card" style="margin-bottom:var(--space-6);">
+        <h4 style="font-size:var(--font-size-xs);font-weight:var(--font-weight-semibold);letter-spacing:var(--letter-spacing-wide);text-transform:uppercase;color:var(--text-tertiary);margin-bottom:var(--space-4);">Primary</h4>
+        <div class="ds-flex">
+          <button class="btn btn-primary btn-sm">Small</button>
+          <button class="btn btn-primary">Default · Explore Jobs</button>
+          <button class="btn btn-primary btn-lg">Large · Model Playground</button>
+          <button class="btn btn-primary btn-disabled">Disabled</button>
+        </div>
+      </div>
+      <div class="ds-card" style="margin-bottom:var(--space-6);">
+        <h4 style="font-size:var(--font-size-xs);font-weight:var(--font-weight-semibold);letter-spacing:var(--letter-spacing-wide);text-transform:uppercase;color:var(--text-tertiary);margin-bottom:var(--space-4);">Secondary (Outline)</h4>
+        <div class="ds-flex">
+          <button class="btn btn-secondary btn-sm">Small</button>
+          <button class="btn btn-secondary">Default · Learn More</button>
+          <button class="btn btn-secondary btn-lg">Large</button>
+          <button class="btn btn-secondary btn-disabled">Disabled</button>
+        </div>
+      </div>
+      <div class="ds-card">
+        <h4 style="font-size:var(--font-size-xs);font-weight:var(--font-weight-semibold);letter-spacing:var(--letter-spacing-wide);text-transform:uppercase;color:var(--text-tertiary);margin-bottom:var(--space-4);">Ghost (Text Link with Arrow)</h4>
+        <div class="ds-flex">
+          <a href="#" class="btn btn-ghost btn-sm">Read more</a>
+          <a href="#" class="btn btn-ghost">Explore all jobs</a>
+          <a href="#" class="btn btn-ghost btn-lg">View all news</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION: NAVIGATION
+         ========================================================= -->
+    <section class="ds-section" id="navigation">
+      <div class="ds-section-header">
+        <div class="ds-section-eyebrow">Components · 02</div>
+        <h2 class="ds-section-title">Navigation</h2>
+        <p class="ds-section-desc">Minimal horizontal nav. Logo is italic serif. Links are lowercase, restrained weight. Single primary CTA on the right. Sticky with backdrop blur.</p>
+      </div>
+      <div class="nav-demo">
+        <div class="nav-logo">MAI</div>
+        <nav class="nav-links">
+          <a href="#" class="nav-link active">About</a>
+          <a href="#" class="nav-link">News</a>
+          <a href="#" class="nav-link">Team</a>
+          <a href="#" class="nav-link">Careers</a>
+        </nav>
+        <a href="#" class="nav-cta">Playground</a>
+      </div>
+      <div class="ds-label">Nav height: 64px · backdrop-filter: blur(12px) · border-bottom: 1px solid --border-default</div>
+    </section>
+
+    <!-- =========================================================
+         SECTION: TAGS
+         ========================================================= -->
+    <section class="ds-section" id="tags">
+      <div class="ds-section-header">
+        <div class="ds-section-eyebrow">Components · 03</div>
+        <h2 class="ds-section-title">Tags & Pills</h2>
+        <p class="ds-section-desc">Used for news category filtering and article metadata. Uppercase, letter-spaced, small. Pill border-radius throughout.</p>
+      </div>
+      <div class="ds-card">
+        <div class="ds-flex" style="margin-bottom:var(--space-4);">
+          <span class="tag tag-default">All</span>
+          <span class="tag tag-active">Models</span>
+          <span class="tag tag-default">AI</span>
+          <span class="tag tag-default">Copilot</span>
+          <span class="tag tag-default">Health</span>
+          <span class="tag tag-default">Research</span>
+          <span class="tag tag-default">TED Talk</span>
+          <span class="tag tag-gold">Featured</span>
+        </div>
+        <div class="ds-label">tag-default (rest) · tag-active (selected) · tag-gold (editorial highlight)</div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION: CARDS
+         ========================================================= -->
+    <section class="ds-section" id="cards">
+      <div class="ds-section-header">
+        <div class="ds-section-eyebrow">Components · 04</div>
+        <h2 class="ds-section-title">Cards</h2>
+        <p class="ds-section-desc">Three card types: News Card (editorial), Value Card (icon + description), Model Card (product). All lift on hover via translateY with no scale.</p>
+      </div>
+
+      <h4 style="font-size:var(--font-size-xs);font-weight:600;letter-spacing:var(--letter-spacing-wide);text-transform:uppercase;color:var(--text-tertiary);margin-bottom:var(--space-4);">News Cards</h4>
+      <div class="ds-grid ds-grid-3" style="margin-bottom:var(--space-8);">
+        <div class="news-card">
+          <div class="news-card-img"><div class="news-card-img-placeholder">16:9 image</div></div>
+          <div class="news-card-body">
+            <div class="news-card-tag">models</div>
+            <div class="news-card-title">MAI-Image-2.5 launches at No. 3 on Arena</div>
+            <div class="news-card-meta">2 min read</div>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="news-card-img"><div class="news-card-img-placeholder">16:9 image</div></div>
+          <div class="news-card-body">
+            <div class="news-card-tag">health</div>
+            <div class="news-card-title">Introducing Copilot Health</div>
+            <div class="news-card-meta">5 min read</div>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="news-card-img"><div class="news-card-img-placeholder">16:9 image</div></div>
+          <div class="news-card-body">
+            <div class="news-card-tag">research</div>
+            <div class="news-card-title">Towards Humanist Superintelligence</div>
+            <div class="news-card-meta">16 min read</div>
+          </div>
+        </div>
+      </div>
+
+      <h4 style="font-size:var(--font-size-xs);font-weight:600;letter-spacing:var(--letter-spacing-wide);text-transform:uppercase;color:var(--text-tertiary);margin-bottom:var(--space-4);">Value Cards</h4>
+      <div class="ds-grid ds-grid-3" style="margin-bottom:var(--space-8);">
+        <div class="value-card">
+          <div class="value-card-icon">🤝</div>
+          <div class="value-card-title">Kindness</div>
+          <div class="value-card-desc">Kindness is at the heart of how we conduct ourselves.</div>
+        </div>
+        <div class="value-card">
+          <div class="value-card-icon">🛡️</div>
+          <div class="value-card-title">Trust</div>
+          <div class="value-card-desc">We put our users first and focus on earning their trust.</div>
+        </div>
+        <div class="value-card">
+          <div class="value-card-icon">✦</div>
+          <div class="value-card-title">Safety & Security</div>
+          <div class="value-card-desc">We're committed to AI driven by ethical principles.</div>
+        </div>
+      </div>
+
+      <h4 style="font-size:var(--font-size-xs);font-weight:600;letter-spacing:var(--letter-spacing-wide);text-transform:uppercase;color:var(--text-tertiary);margin-bottom:var(--space-4);">Model Cards</h4>
+      <div class="ds-grid ds-grid-4">
+        <div class="model-card">
+          <div class="model-card-icon">🔊</div>
+          <div class="model-card-name">MAI-Voice-1</div>
+          <div class="model-card-desc">Next-gen voice model with natural, expressive speech.</div>
+          <a href="#" class="model-card-link">Learn more →</a>
+        </div>
+        <div class="model-card">
+          <div class="model-card-icon">🖼️</div>
+          <div class="model-card-name">MAI-Image-2</div>
+          <div class="model-card-desc">Most capable image model for grounded creative work.</div>
+          <a href="#" class="model-card-link">Learn more →</a>
+        </div>
+        <div class="model-card">
+          <div class="model-card-icon">🧠</div>
+          <div class="model-card-name">MAI-1-Preview</div>
+          <div class="model-card-desc">First end-to-end foundational model — coming soon.</div>
+          <a href="#" class="model-card-link" style="opacity:0.5;pointer-events:none;">Not available →</a>
+        </div>
+        <div class="model-card">
+          <div class="model-card-icon">🎙️</div>
+          <div class="model-card-name">MAI-Transcribe-1</div>
+          <div class="model-card-desc">Fast, accurate speech-to-text across 25 languages.</div>
+          <a href="#" class="model-card-link">Learn more →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION: TABS
+         ========================================================= -->
+    <section class="ds-section" id="tabs">
+      <div class="ds-section-header">
+        <div class="ds-section-eyebrow">Components · 05</div>
+        <h2 class="ds-section-title">Tabs</h2>
+        <p class="ds-section-desc">Used in the Products section to switch between Copilot, Bing, Edge, GroupMe. Bottom-border indicator, no background fill on active.</p>
+      </div>
+      <div class="ds-card">
+        <div class="tab-group" role="tablist">
+          <button class="tab active" role="tab" onclick="switchTab(this,'tab-copilot')" aria-selected="true">Copilot</button>
+          <button class="tab" role="tab" onclick="switchTab(this,'tab-bing')" aria-selected="false">Bing</button>
+          <button class="tab" role="tab" onclick="switchTab(this,'tab-edge')" aria-selected="false">Edge</button>
+          <button class="tab" role="tab" onclick="switchTab(this,'tab-groupme')" aria-selected="false">GroupMe</button>
+        </div>
+        <div id="tab-copilot" class="tab-panel active" role="tabpanel">
+          <p style="color:var(--text-secondary);font-size:var(--font-size-base);line-height:var(--line-height-relaxed);">Copilot is your AI companion that helps you think, create, and get things done — whether you're solving problems, exploring ideas, or just having a great conversation.</p>
+        </div>
+        <div id="tab-bing" class="tab-panel" role="tabpanel">
+          <p style="color:var(--text-secondary);font-size:var(--font-size-base);line-height:var(--line-height-relaxed);">Bing is your AI-powered search engine and ally in generative search for quick answers, rewards, news, and more.</p>
+        </div>
+        <div id="tab-edge" class="tab-panel" role="tabpanel">
+          <p style="color:var(--text-secondary);font-size:var(--font-size-base);line-height:var(--line-height-relaxed);">Microsoft Edge is the browser at the apex of performance and security, driving individuated experiences in AI-powered search, task completion, and content creation.</p>
+        </div>
+        <div id="tab-groupme" class="tab-panel" role="tabpanel">
+          <p style="color:var(--text-secondary);font-size:var(--font-size-base);line-height:var(--line-height-relaxed);">GroupMe makes it easy to stay connected and organized with friends, family, classmates, or coworkers.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION: FORMS
+         ========================================================= -->
+    <section class="ds-section" id="forms">
+      <div class="ds-section-header">
+        <div class="ds-section-eyebrow">Components · 06</div>
+        <h2 class="ds-section-title">Forms</h2>
+        <p class="ds-section-desc">Clean, minimal form elements. Border transitions to blue focus ring. Error state in red, success in green.</p>
+      </div>
+      <div class="ds-card" style="max-width:480px;">
+        <div class="form-group">
+          <label class="form-label">Name</label>
+          <input class="form-input" type="text" placeholder="Mustafa Suleyman">
+          <span class="form-hint">Used to personalize your experience</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input class="form-input" type="email" placeholder="you@microsoft.ai">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Error state</label>
+          <input class="form-input error" type="text" value="invalid@">
+          <span class="form-hint error">Please enter a valid email address</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Success state</label>
+          <input class="form-input success" type="text" value="valid@microsoft.ai">
+        </div>
+        <button class="btn btn-primary" style="width:100%;">Submit</button>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION: HERO PATTERN
+         ========================================================= -->
+    <section class="ds-section" id="hero">
+      <div class="ds-section-header">
+        <div class="ds-section-eyebrow">Patterns · 01</div>
+        <h2 class="ds-section-title">Hero</h2>
+        <p class="ds-section-desc">Full-bleed editorial hero. Display serif headline with italic accent word. Radial gradient subtle background. Max headline: clamp(2.5rem, 6vw, 5rem).</p>
+      </div>
+      <div class="hero-demo">
+        <div class="hero-eyebrow">Microsoft AI</div>
+        <h1 class="hero-headline"><em>Humanist</em><br>Superintelligence</h1>
+        <p class="hero-sub">Responsible AI to empower humanity. Building the world's most capable AI systems, with humanity at the center of every decision.</p>
+        <div class="hero-actions">
+          <a href="#" class="btn btn-primary btn-lg">Model Playground</a>
+          <a href="#" class="btn btn-secondary btn-lg">Learn More</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION: SECTION SPLIT
+         ========================================================= -->
+    <section class="ds-section" id="split">
+      <div class="ds-section-header">
+        <div class="ds-section-eyebrow">Patterns · 02</div>
+        <h2 class="ds-section-title">Section Split</h2>
+        <p class="ds-section-desc">50/50 image-content split. Alternates image left/right on successive sections. Gap: 40px. Aligns to center vertically. Mobile: stacks image above text.</p>
+      </div>
+      <div class="split-demo">
+        <div class="split-img-placeholder">Photography · 4:3</div>
+        <div>
+          <div class="split-content-eyebrow">Our Approach</div>
+          <h3 class="split-content-title">Advancing the <em style="font-style:italic;">frontier</em></h3>
+          <p class="split-content-body">We're building state-of-the-art models to deliver AI that works for everyone. We operate with frontier-scale compute and aim to deliver the very best models in the world.</p>
+          <a href="#" class="btn btn-ghost">Explore Jobs</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION: MODEL GRID
+         ========================================================= -->
+    <section class="ds-section" id="models">
+      <div class="ds-section-header">
+        <div class="ds-section-eyebrow">Patterns · 03</div>
+        <h2 class="ds-section-title">Model Grid</h2>
+        <p class="ds-section-desc">4-column grid of model cards. Each card has abstract SVG icon, model name, short description, and a learn-more ghost link. Gold shimmer top-border on hover.</p>
+      </div>
+      <div class="ds-grid ds-grid-4">
+        <div class="model-card">
+          <div class="model-card-icon">🔊</div>
+          <div class="model-card-name">MAI-Voice-1</div>
+          <div class="model-card-desc">Natural, expressive speech that adapts to intent.</div>
+          <a href="#" class="model-card-link">Learn more →</a>
+        </div>
+        <div class="model-card">
+          <div class="model-card-icon">🖼️</div>
+          <div class="model-card-name">MAI-Image-2</div>
+          <div class="model-card-desc">Grounded, reliable visuals for real creative work.</div>
+          <a href="#" class="model-card-link">Learn more →</a>
+        </div>
+        <div class="model-card">
+          <div class="model-card-icon">🧠</div>
+          <div class="model-card-name">MAI-1-Preview</div>
+          <div class="model-card-desc">First foundational model — early look at future intelligence.</div>
+          <a href="#" class="model-card-link" style="opacity:0.4;pointer-events:none;">Coming soon →</a>
+        </div>
+        <div class="model-card">
+          <div class="model-card-icon">🎙️</div>
+          <div class="model-card-name">MAI-Transcribe-1</div>
+          <div class="model-card-desc">Fast, accurate speech-to-text across 25 languages.</div>
+          <a href="#" class="model-card-link">Learn more →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION: NEWS GRID
+         ========================================================= -->
+    <section class="ds-section" id="news-grid">
+      <div class="ds-section-header">
+        <div class="ds-section-eyebrow">Patterns · 04</div>
+        <h2 class="ds-section-title">News Grid</h2>
+        <p class="ds-section-desc">3-column responsive grid with filter pills above. First card may be featured (full width). Each card: image, tag, title, read time. Filterable by category.</p>
+      </div>
+      <div class="ds-flex" style="margin-bottom:var(--space-6);">
+        <span class="tag tag-active">All</span>
+        <span class="tag tag-default">AI</span>
+        <span class="tag tag-default">Models</span>
+        <span class="tag tag-default">Copilot</span>
+        <span class="tag tag-default">Health</span>
+        <span class="tag tag-default">Research</span>
+      </div>
+      <div class="ds-grid ds-grid-3">
+        <div class="news-card">
+          <div class="news-card-img"><div class="news-card-img-placeholder">Image</div></div>
+          <div class="news-card-body">
+            <div class="news-card-tag">models</div>
+            <div class="news-card-title">MAI-Image-2.5 launches at No. 3 on Arena</div>
+            <div class="news-card-meta">2 min read</div>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="news-card-img"><div class="news-card-img-placeholder">Image</div></div>
+          <div class="news-card-body">
+            <div class="news-card-tag">health</div>
+            <div class="news-card-title">Health Check: How People Use Copilot for Health</div>
+            <div class="news-card-meta">7 min read</div>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="news-card-img"><div class="news-card-img-placeholder">Image</div></div>
+          <div class="news-card-body">
+            <div class="news-card-tag">research</div>
+            <div class="news-card-title">Towards Humanist Superintelligence</div>
+            <div class="news-card-meta">16 min read</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION: LOCATION GRID
+         ========================================================= -->
+    <section class="ds-section" id="locations">
+      <div class="ds-section-header">
+        <div class="ds-section-eyebrow">Patterns · 05</div>
+        <h2 class="ds-section-title">Location Grid</h2>
+        <p class="ds-section-desc">Used on the About page. 4-column grid of illustrated location cards. Illustrations are warm, colorful painterly cityscapes (AI-generated). CTA in each card.</p>
+      </div>
+      <div class="ds-grid ds-grid-4">
+        <div class="location-card">
+          <div class="location-img">Illustration</div>
+          <div class="location-body">
+            <div class="location-city">Redmond</div>
+            <div class="location-desc">Microsoft's home campus with Wi-Fi shuttles, on-campus dining, and trails.</div>
+            <a href="#" class="btn btn-ghost btn-sm">Explore Jobs</a>
+          </div>
+        </div>
+        <div class="location-card">
+          <div class="location-img">Illustration</div>
+          <div class="location-body">
+            <div class="location-city">New York</div>
+            <div class="location-desc">West of Times Square, home to nearly 1,000 employees and a Briefing Center.</div>
+            <a href="#" class="btn btn-ghost btn-sm">Explore Jobs</a>
+          </div>
+        </div>
+        <div class="location-card">
+          <div class="location-img">Illustration</div>
+          <div class="location-body">
+            <div class="location-city">London</div>
+            <div class="location-desc">AI hub for researchers advancing language models and responsible innovation.</div>
+            <a href="#" class="btn btn-ghost btn-sm">Explore Jobs</a>
+          </div>
+        </div>
+        <div class="location-card">
+          <div class="location-img">Illustration</div>
+          <div class="location-body">
+            <div class="location-city">Zurich</div>
+            <div class="location-desc">Mixed Reality & AI Lab advancing spatial intelligence with ETH Zurich.</div>
+            <a href="#" class="btn btn-ghost btn-sm">Explore Jobs</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION: MARQUEE
+         ========================================================= -->
+    <section class="ds-section" id="marquee">
+      <div class="ds-section-header">
+        <div class="ds-section-eyebrow">Patterns · 06</div>
+        <h2 class="ds-section-title">Marquee / Ticker</h2>
+        <p class="ds-section-desc">Continuous horizontal ticker displaying brand phrases in italic serif. Pauses on hover. Respects prefers-reduced-motion. Border top and bottom. 18s cycle.</p>
+      </div>
+      <div class="marquee-wrap" onmouseenter="this.querySelector('.marquee-track').style.animationPlayState='paused'" onmouseleave="this.querySelector('.marquee-track').style.animationPlayState='running'">
+        <div class="marquee-track">
+          <span class="marquee-item">Humanist Superintelligence</span>
+          <span class="marquee-item">·</span>
+          <span class="marquee-item">Advancing the Frontier</span>
+          <span class="marquee-item">·</span>
+          <span class="marquee-item">Designing for Humanity</span>
+          <span class="marquee-item">·</span>
+          <span class="marquee-item">Prioritizing Safety</span>
+          <span class="marquee-item">·</span>
+          <span class="marquee-item">Humanist Superintelligence</span>
+          <span class="marquee-item">·</span>
+          <span class="marquee-item">Advancing the Frontier</span>
+          <span class="marquee-item">·</span>
+          <span class="marquee-item">Designing for Humanity</span>
+          <span class="marquee-item">·</span>
+          <span class="marquee-item">Prioritizing Safety</span>
+          <span class="marquee-item">·</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION: FOOTER
+         ========================================================= -->
+    <section class="ds-section" id="footer">
+      <div class="ds-section-header">
+        <div class="ds-section-eyebrow">Patterns · 07</div>
+        <h2 class="ds-section-title">Footer</h2>
+        <p class="ds-section-desc">Dark inverse footer on --surface-inverse. Brand + tagline left, nav columns right. Social icons as minimal bordered circles. Legal row at the bottom.</p>
+      </div>
+      <div class="footer-demo">
+        <div class="footer-grid">
+          <div>
+            <div class="footer-brand">MAI</div>
+            <div class="footer-tagline">Building the world's most capable AI systems, with humanity at the center of every decision.</div>
+          </div>
+          <div>
+            <div class="footer-col-label">Explore</div>
+            <div class="footer-col-links">
+              <a href="#" class="footer-col-link">About</a>
+              <a href="#" class="footer-col-link">News</a>
+              <a href="#" class="footer-col-link">Team</a>
+              <a href="#" class="footer-col-link">Careers</a>
+              <a href="#" class="footer-col-link">Playground</a>
+            </div>
+          </div>
+          <div>
+            <div class="footer-col-label">Legal</div>
+            <div class="footer-col-links">
+              <a href="#" class="footer-col-link">Privacy & Cookies</a>
+              <a href="#" class="footer-col-link">Terms of Use</a>
+              <a href="#" class="footer-col-link">Trademarks</a>
+              <a href="#" class="footer-col-link">Contact</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="footer-copy">© Microsoft 2026</div>
+          <div class="footer-social">
+            <a href="#" class="footer-social-link" aria-label="LinkedIn">in</a>
+            <a href="#" class="footer-social-link" aria-label="Instagram">ig</a>
+            <a href="#" class="footer-social-link" aria-label="X / Twitter">𝕏</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION: SKELETON / LOADING
+         ========================================================= -->
+    <section class="ds-section" style="border-bottom:none;">
+      <div class="ds-section-header">
+        <div class="ds-section-eyebrow">Components · 07</div>
+        <h2 class="ds-section-title">Skeleton Loading</h2>
+        <p class="ds-section-desc">Shimmer placeholder pattern for async content. Matches card shapes. 1.5s animation cycle.</p>
+      </div>
+      <div class="ds-grid ds-grid-3">
+        <div class="ds-card" style="padding:0;overflow:hidden;border-radius:var(--radius-lg);">
+          <div class="skeleton" style="height:160px;border-radius:0;"></div>
+          <div style="padding:var(--space-5);">
+            <div class="skeleton" style="height:12px;width:60px;margin-bottom:var(--space-3);"></div>
+            <div class="skeleton" style="height:20px;width:100%;margin-bottom:var(--space-2);"></div>
+            <div class="skeleton" style="height:20px;width:75%;margin-bottom:var(--space-3);"></div>
+            <div class="skeleton" style="height:12px;width:48px;"></div>
+          </div>
+        </div>
+        <div class="ds-card" style="padding:0;overflow:hidden;border-radius:var(--radius-lg);">
+          <div class="skeleton" style="height:160px;border-radius:0;"></div>
+          <div style="padding:var(--space-5);">
+            <div class="skeleton" style="height:12px;width:48px;margin-bottom:var(--space-3);"></div>
+            <div class="skeleton" style="height:20px;width:100%;margin-bottom:var(--space-2);"></div>
+            <div class="skeleton" style="height:20px;width:80%;margin-bottom:var(--space-3);"></div>
+            <div class="skeleton" style="height:12px;width:56px;"></div>
+          </div>
+        </div>
+        <div class="ds-card" style="padding:0;overflow:hidden;border-radius:var(--radius-lg);">
+          <div class="skeleton" style="height:160px;border-radius:0;"></div>
+          <div style="padding:var(--space-5);">
+            <div class="skeleton" style="height:12px;width:72px;margin-bottom:var(--space-3);"></div>
+            <div class="skeleton" style="height:20px;width:100%;margin-bottom:var(--space-2);"></div>
+            <div class="skeleton" style="height:20px;width:65%;margin-bottom:var(--space-3);"></div>
+            <div class="skeleton" style="height:12px;width:64px;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION: MODULES
+         ========================================================= -->
+    <section class="ds-section" id="modules">
+      <div class="ds-section-header">
+        <div class="ds-section-eyebrow">Modules</div>
+        <h2 class="ds-section-title">Add-on Systems</h2>
+        <p class="ds-section-desc">Optional design systems and section packs. Add a module to include it in this system and its export; remove it to exclude it — the definition stays in the library and can be re-added anytime.</p>
+      </div>
+
+      <!-- Example module: active -->
+      <div class="ds-module" data-module="marketing-kit" data-included="true"
+           data-name="Marketing Site Kit"
+           data-scope="Hero variants, pricing tables, testimonial cards and CTA banners tuned for landing pages. Inherits all base tokens.">
+        <div class="ds-module-card">
+          <button class="ds-module-remove" data-action="remove" aria-label="Remove Marketing Site Kit" onclick="toggleModule(this, false)">
+            <i class="ph ph-minus-circle"></i> Remove
+          </button>
+          <div class="ds-module-icon"><i class="ph ph-megaphone-simple"></i></div>
+          <div class="ds-module-title">Marketing Site Kit</div>
+          <p class="ds-module-desc">Hero variants, pricing tables, testimonial cards and CTA banners tuned for landing pages. Inherits all base tokens.</p>
+          <button class="btn btn-primary btn-lg" data-action="get-started" onclick="startModuleSetup(this)">
+            <i class="ph ph-arrow-right"></i> Get Started
+          </button>
+        </div>
+        <div class="ds-module-stub">
+          <span class="ds-module-stub-label"><i class="ph ph-megaphone-simple"></i> <span class="ds-module-stub-name">Marketing Site Kit</span> — removed from this system</span>
+          <button class="btn btn-primary btn-sm" data-action="add" onclick="toggleModule(this, true)">
+            <i class="ph ph-plus-circle"></i> Add
+          </button>
+        </div>
+      </div>
+
+      <!-- Example module: starts excluded (slim stub) -->
+      <div class="ds-module is-excluded" data-module="data-viz" data-included="false"
+           data-name="Data Visualization Pack"
+           data-scope="Chart palettes, axis & grid tokens, legend and tooltip components for dashboards and reports.">
+        <div class="ds-module-card">
+          <button class="ds-module-remove" data-action="remove" aria-label="Remove Data Visualization Pack" onclick="toggleModule(this, false)">
+            <i class="ph ph-minus-circle"></i> Remove
+          </button>
+          <div class="ds-module-icon"><i class="ph ph-chart-line"></i></div>
+          <div class="ds-module-title">Data Visualization Pack</div>
+          <p class="ds-module-desc">Chart palettes, axis & grid tokens, legend and tooltip components for dashboards and reports.</p>
+          <button class="btn btn-primary btn-lg" data-action="get-started" onclick="startModuleSetup(this)">
+            <i class="ph ph-arrow-right"></i> Get Started
+          </button>
+        </div>
+        <div class="ds-module-stub">
+          <span class="ds-module-stub-label"><i class="ph ph-chart-line"></i> <span class="ds-module-stub-name">Data Visualization Pack</span> — removed from this system</span>
+          <button class="btn btn-primary btn-sm" data-action="add" onclick="toggleModule(this, true)">
+            <i class="ph ph-plus-circle"></i> Add
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION: SUPPORT / FEEDBACK
+         ========================================================= -->
+    <section class="ds-section" id="support" style="border-bottom:none;">
+      <div class="ds-section-header">
+        <div class="ds-section-eyebrow">Support</div>
+        <h2 class="ds-section-title">Feedback &amp; Enhancements</h2>
+      </div>
+      <div class="support-panel">
+        <div class="support-panel-icon"><i class="ph ph-chat-circle-text"></i></div>
+        <div class="support-panel-title">Help shape the system</div>
+        <p class="support-panel-desc">To submit feedback or feature enhancements, email us. Your note goes straight to the design system admin.</p>
+        <button class="btn btn-primary btn-lg" onclick="openFeedback()">
+          <i class="ph ph-paper-plane-tilt"></i> Send Feedback
+        </button>
+      </div>
+    </section>
+
+  </div><!-- /ds-main -->
+</div><!-- /ds-shell -->
+
+<!-- =========================================================
+     FEEDBACK DIALOG
+     ========================================================= -->
+<dialog class="ds-dialog" id="feedback-dialog" aria-labelledby="feedback-title">
+  <div class="ds-dialog-card">
+    <form id="feedback-form" method="dialog">
+      <div class="ds-dialog-header">
+        <div>
+          <div class="ds-dialog-title" id="feedback-title">Send Feedback</div>
+          <div class="ds-dialog-sub">Feature requests, bugs, or ideas — all welcome.</div>
+        </div>
+        <button type="button" class="ds-dialog-close" aria-label="Close" onclick="closeFeedback()">&times;</button>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="fb-first">First name</label>
+          <input class="form-input" id="fb-first" name="first" type="text" required autocomplete="given-name">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="fb-last">Last name</label>
+          <input class="form-input" id="fb-last" name="last" type="text" required autocomplete="family-name">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="fb-email">Your email</label>
+        <input class="form-input" id="fb-email" name="email" type="email" required autocomplete="email" placeholder="you@example.com">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="fb-message">Feedback</label>
+        <textarea class="form-input" id="fb-message" name="message" rows="4" maxlength="250" required
+          placeholder="Share your feedback or feature request (250 characters max)"
+          oninput="updateCounter()" style="resize:vertical;font-family:var(--font-body);"></textarea>
+        <div class="form-counter"><span id="fb-count">0</span>/250</div>
+      </div>
+
+      <div class="ds-dialog-meta" id="fb-meta">Tagged automatically with date, time &amp; DS version on submit.</div>
+
+      <div class="ds-dialog-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeFeedback()">Cancel</button>
+        <button type="submit" class="btn btn-primary"><i class="ph ph-paper-plane-tilt"></i> Submit</button>
+      </div>
+    </form>
+
+    <div class="form-success" id="feedback-success" style="display:none;">
+      <div class="form-success-icon"><i class="ph ph-check-circle"></i></div>
+      <div class="ds-dialog-title" style="margin-bottom:var(--space-2);">Thank you</div>
+      <p class="support-panel-desc" style="margin-bottom:var(--space-5);">Your email draft is ready to send. We appreciate you helping improve the system.</p>
+      <button type="button" class="btn btn-primary" onclick="closeFeedback()">Done</button>
+    </div>
+  </div>
+</dialog>
+
+<!-- =========================================================
+     MODULE SETUP DIALOG  (Get Started → configure flow)
+     ========================================================= -->
+<dialog class="ds-dialog" id="module-dialog" aria-labelledby="module-title">
+  <div class="ds-dialog-card">
+    <div class="ds-dialog-header">
+      <div>
+        <div class="ds-dialog-title" id="module-title">Set up module</div>
+        <div class="ds-dialog-sub" id="module-sub">Configure this add-on, then generate it in Claude.</div>
+      </div>
+      <button type="button" class="ds-dialog-close" aria-label="Close" onclick="closeModuleSetup()">&times;</button>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="ms-platform">Platform</label>
+      <select class="form-input" id="ms-platform" style="font-family:var(--font-body);">
+        <option value="Both">Web &amp; App (both)</option>
+        <option value="Web">Web only</option>
+        <option value="App">App only</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="ms-notes">Anything specific to include? (optional)</label>
+      <textarea class="form-input" id="ms-notes" rows="3"
+        placeholder="e.g. dark-mode first, must match brand gold accent, include empty states…"
+        style="resize:vertical;font-family:var(--font-body);" oninput="buildModulePrompt()"></textarea>
+    </div>
+
+    <label class="form-label" style="display:block;margin-bottom:var(--space-2);">Generated prompt — paste into this Claude project</label>
+    <pre id="ms-prompt" style="background:var(--surface-subtle);border:1px solid var(--border-default);border-radius:var(--radius-md);padding:var(--space-4);font-family:var(--font-mono);font-size:var(--font-size-xs);color:var(--text-secondary);white-space:pre-wrap;max-height:220px;overflow:auto;margin:0;"></pre>
+
+    <div class="ds-dialog-footer">
+      <button type="button" class="btn btn-secondary" onclick="closeModuleSetup()">Cancel</button>
+      <button type="button" class="btn btn-primary" id="ms-copy" onclick="copyModulePrompt()"><i class="ph ph-copy"></i> Copy prompt</button>
+    </div>
+  </div>
+</dialog>
+
+<!-- =========================================================
+     FONT DOWNLOAD DIALOG
+     ========================================================= -->
+<dialog class="ds-dialog" id="font-dialog" aria-labelledby="font-title">
+  <div class="ds-dialog-card">
+    <div class="ds-dialog-header">
+      <div>
+        <div class="ds-dialog-title" id="font-title">Download fonts</div>
+        <div class="ds-dialog-sub">Grab the typefaces this system uses for local work.</div>
+      </div>
+    </div>
+    <div id="font-list"></div>
+    <div class="ds-dialog-meta">System defaults (Georgia, system sans, system mono) are preinstalled and omitted. Non-free typefaces link to the foundry to purchase.</div>
+    <div class="ds-dialog-footer">
+      <button type="button" class="btn btn-primary" onclick="closeFontDownloads()">OK</button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  // Theme toggle
+  function toggleTheme() {
+    const root = document.documentElement;
+    const isDark = root.getAttribute('data-theme') === 'dark';
+    root.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    document.getElementById('theme-icon').textContent = isDark ? '☀️' : '🌙';
+    document.getElementById('theme-label').textContent = isDark ? 'Light' : 'Dark';
+  }
+
+  // Respect system preference on load
+  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.getElementById('theme-icon').textContent = '🌙';
+    document.getElementById('theme-label').textContent = 'Dark';
+  }
+
+  // Tab switcher
+  function switchTab(btn, panelId) {
+    const tabGroup = btn.closest('.ds-card');
+    tabGroup.querySelectorAll('.tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+    tabGroup.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected','true');
+    document.getElementById(panelId).classList.add('active');
+  }
+
+  // ---- Design system config ----
+  const DS_VERSION = '1.0';
+  const MAINTAINER_EMAIL = 'ndijulio@gmail.com';
+
+  // ---- Font families config ----
+  // isSystem: preinstalled defaults are skipped from downloads.
+  // free: link to free source. paid: link to foundry to purchase.
+  const FONT_FAMILIES = [
+    { name: 'Georgia',     role: 'Display', isSystem: true },
+    { name: 'System Sans', role: 'Body',    isSystem: true },
+    { name: 'System Mono', role: 'Mono',    isSystem: true },
+    // Example of how a custom face would appear:
+    // { name: 'Tiempos Headline', role: 'Display', isSystem: false, free: false, url: 'https://klim.co.nz/retail-fonts/tiempos-headline/' },
+    // { name: 'Inter', role: 'Body', isSystem: false, free: true, url: 'https://fonts.google.com/specimen/Inter' },
+  ];
+
+  const fontDialog = document.getElementById('font-dialog');
+  function openFontDownloads() {
+    const custom = FONT_FAMILIES.filter(f => !f.isSystem);
+    const list = document.getElementById('font-list');
+    if (custom.length === 0) {
+      list.innerHTML =
+        '<div class="zero-state" style="padding:var(--space-8);">' +
+        '<div class="zero-state-icon"><i class="ph ph-check-circle"></i></div>' +
+        '<div class="zero-state-title">Nothing to download</div>' +
+        '<p class="zero-state-desc" style="margin-bottom:0;">All typefaces in this system are preinstalled defaults (Georgia, system sans &amp; mono). No files are needed to work locally.</p>' +
+        '</div>';
+    } else {
+      list.innerHTML = custom.map(f => {
+        const badge = f.free
+          ? '<span class="asset-badge free">Free</span>'
+          : '<span class="asset-badge paid">Paid</span>';
+        const cta = f.free
+          ? `<a class="btn btn-primary btn-sm" href="${f.url}" target="_blank" rel="noopener"><i class="ph ph-download-simple"></i> Download</a>`
+          : `<a class="btn btn-secondary btn-sm" href="${f.url}" target="_blank" rel="noopener"><i class="ph ph-arrow-square-out"></i> Purchase</a>`;
+        return `<div class="asset-item"><div><div class="asset-name">${f.name} ${badge}</div><div class="asset-meta">${f.role}</div></div>${cta}</div>`;
+      }).join('');
+    }
+    if (typeof fontDialog.showModal === 'function') fontDialog.showModal();
+    else fontDialog.setAttribute('open','');
+  }
+  function closeFontDownloads() {
+    if (typeof fontDialog.close === 'function') fontDialog.close();
+    else fontDialog.removeAttribute('open');
+  }
+  fontDialog.addEventListener('click', e => { if (e.target === fontDialog) closeFontDownloads(); });
+
+  // ---- Icon request (for non-open-source / in-house glyphs) ----
+  function requestIcons() {
+    const subject = `MAI Design System — Icon source files request (v${DS_VERSION})`;
+    const body = `Hi,\n\nCould you share the source files for the custom brand glyphs?\n\nDS Version: v${DS_VERSION}\nRequested: ${new Date().toLocaleString()}\n`;
+    window.location.href =
+      `mailto:${MAINTAINER_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  }
+
+  // ---- Feedback dialog ----
+  const fbDialog = document.getElementById('feedback-dialog');
+  const fbForm = document.getElementById('feedback-form');
+  const fbSuccess = document.getElementById('feedback-success');
+
+  function openFeedback() {
+    fbForm.style.display = '';
+    fbSuccess.style.display = 'none';
+    fbForm.reset();
+    updateCounter();
+    if (typeof fbDialog.showModal === 'function') fbDialog.showModal();
+    else fbDialog.setAttribute('open', '');
+    document.getElementById('fb-first').focus();
+  }
+  function closeFeedback() {
+    if (typeof fbDialog.close === 'function') fbDialog.close();
+    else fbDialog.removeAttribute('open');
+  }
+  function updateCounter() {
+    document.getElementById('fb-count').textContent =
+      document.getElementById('fb-message').value.length;
+  }
+  // Close on backdrop click
+  fbDialog.addEventListener('click', e => { if (e.target === fbDialog) closeFeedback(); });
+
+  fbForm.addEventListener('submit', e => {
+    e.preventDefault();
+    if (!fbForm.reportValidity()) return;
+    const first = document.getElementById('fb-first').value.trim();
+    const last  = document.getElementById('fb-last').value.trim();
+    const email = document.getElementById('fb-email').value.trim();
+    const msg   = document.getElementById('fb-message').value.trim();
+    const now = new Date();
+    const stamp = now.toLocaleString();
+
+    const subject = `MAI Design System Feedback — v${DS_VERSION}`;
+    const body =
+      `From: ${first} ${last} <${email}>\n` +
+      `Date: ${stamp}\n` +
+      `DS Version: v${DS_VERSION}\n` +
+      `------------------------------\n\n` +
+      `${msg}\n`;
+
+    window.location.href =
+      `mailto:${MAINTAINER_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    // Show confirmation
+    fbForm.style.display = 'none';
+    fbSuccess.style.display = '';
+  });
+
+  // ---- Modules: Add / Remove ----
+  // Remove = hide card + show slim stub + flag excluded (dropped from export).
+  // Add = restore card. Definition is never deleted.
+  function toggleModule(btn, include) {
+    const mod = btn.closest('.ds-module');
+    mod.dataset.included = include ? 'true' : 'false';
+    mod.classList.toggle('is-excluded', !include);
+  }
+  // Helper: list modules included in the active system / export.
+  function includedModules() {
+    return [...document.querySelectorAll('.ds-module')]
+      .filter(m => m.dataset.included === 'true')
+      .map(m => m.dataset.module);
+  }
+
+  // ---- Module setup flow (Get Started) ----
+  // Recommended path: a structured handoff. "Get Started" doesn't build the
+  // module in-browser — it generates a scoped prompt the user pastes into this
+  // Claude project, which authors the module + appends it to the master library.
+  const moduleDialog = document.getElementById('module-dialog');
+  let activeModule = null;
+
+  function startModuleSetup(btn) {
+    const mod = btn.closest('.ds-module');
+    activeModule = mod;
+    // Ensure it's marked included once the user commits to setup.
+    toggleModule(btn, true);
+    document.getElementById('module-title').textContent = 'Set up: ' + (mod.dataset.name || mod.dataset.module);
+    document.getElementById('module-sub').textContent = mod.dataset.scope || '';
+    document.getElementById('ms-notes').value = '';
+    buildModulePrompt();
+    if (typeof moduleDialog.showModal === 'function') moduleDialog.showModal();
+    else moduleDialog.setAttribute('open', '');
+  }
+  function closeModuleSetup() {
+    if (typeof moduleDialog.close === 'function') moduleDialog.close();
+    else moduleDialog.removeAttribute('open');
+  }
+  function buildModulePrompt() {
+    if (!activeModule) return;
+    const name = activeModule.dataset.name || activeModule.dataset.module;
+    const scope = activeModule.dataset.scope || '';
+    const platform = document.getElementById('ms-platform').value;
+    const notes = document.getElementById('ms-notes').value.trim();
+    const prompt =
+`Extend the MAI design system with a new module.
+
+Module: ${name}
+Scope: ${scope}
+Platform: ${platform}
+${notes ? 'Special requirements: ' + notes + '\n' : ''}
+Use the existing design tokens (colors, type, spacing, motion) — inherit, don't redefine.
+Build it as a removable module styled like the Modules section, append it to
+microsoft-ai-design-system.html, and log it in MASTER-SECTION-LIBRARY.md (Change Log + relevant section).`;
+    document.getElementById('ms-prompt').textContent = prompt;
+  }
+  function copyModulePrompt() {
+    const text = document.getElementById('ms-prompt').textContent;
+    const done = () => {
+      const b = document.getElementById('ms-copy');
+      b.innerHTML = '<i class="ph ph-check"></i> Copied';
+      setTimeout(() => { b.innerHTML = '<i class="ph ph-copy"></i> Copy prompt'; }, 1800);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(done);
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = text; document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta); done();
+    }
+  }
+  moduleDialog.addEventListener('click', e => { if (e.target === moduleDialog) closeModuleSetup(); });
+
+  // Collapsible nav groups
+  function toggleNavGroup(btn) {
+    const group = btn.closest('.ds-nav-group');
+    const collapsed = group.classList.toggle('collapsed');
+    btn.setAttribute('aria-expanded', String(!collapsed));
+  }
+
+  // Active nav highlight on scroll
+  const sections = document.querySelectorAll('.ds-section[id]');
+  const navLinks = document.querySelectorAll('.ds-nav-link');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const link = document.querySelector(`.ds-nav-link[href="#${entry.target.id}"]`);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
